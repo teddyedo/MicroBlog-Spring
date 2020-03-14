@@ -1,4 +1,4 @@
-package com.example.MicroBlog;
+package com.example.microblog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
