@@ -22,7 +22,7 @@ public class Commento {
     @Setter
     private long Id;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Getter
     @Setter
     private Date DataOra;
