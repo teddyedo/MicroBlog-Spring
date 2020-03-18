@@ -1,5 +1,7 @@
 package com.example.microblog.controller;
 
+import com.example.microblog.entities.Utente;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,10 +17,14 @@ public class UserController {
         return "register.html";
     }
 
-    @RequestMapping("Micr")
-    public String metodo(Utente u) {
-        return "index.html";
+    @RequestMapping("Microblog/login")
+    public String getLoginPage() {
+        return "login.html";
     }
 
+    @RequestMapping("Microblog/logout")
+    public String getLogoutPage(Utente u) {
+        return "logout.html";
+    }
 }
 

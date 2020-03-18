@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>HomePage</title>
     <meta charset="UTF-8" />
@@ -13,9 +13,15 @@ and open the template in the editor.
       rel="stylesheet"
       th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}"
     />
-    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js}"></script>
-    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js}"></script>
-    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+    <script
+      th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js}"
+    ></script>
+    <script
+      th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js}"
+    ></script>
+    <script
+      th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js}"
+    ></script>
 
     <link
       rel="stylesheet"
@@ -32,7 +38,11 @@ and open the template in the editor.
       type="text/css"
       th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}"
     />
-    <link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/vendor/animate/animate.css}"
+    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -69,35 +79,39 @@ and open the template in the editor.
             class="login100-form-btn"
             id="button1"
             onclick="location.href = 'Microblog/register';"
-            >Registrati</button>
+          >
+            Registrati
+          </button>
 
           <label></label>
           <button
             type="submit"
             class="login100-form-btn"
             id="button2"
-            onclick="location.href = 'login';"
-          >Login</button>
-          
-          <form
-              action="vediPost">
+            onclick="location.href = 'Microblog/login';"
+          >
+            Login
+          </button>
+
           <label></label>
           <button
             type="submit"
             class="login100-form-btn"
             id="button3"
-          >Vedi i post</button>
-          </form>
-          
-          <form
-              action="logout">
+            onclick="location.href = 'Microblog/vediPost';"
+          >
+            Vedi i post
+          </button>
+
           <label></label>
           <button
             type="submit"
             class="login100-form-btn"
             id="button4"
-            >Logout</button>
-          </form>
+            onclick="location.href = 'Microblog/logout';"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>
