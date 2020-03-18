@@ -70,11 +70,12 @@ and open the template in the editor.
                 <h4 class="commentoCard">Commenti</h4>
                 <br />
                 <div class="commenti">
-                    
+
                     <div class="commento" th:each="commento : ${commentoRepo.findByPost(post)}">
                         <h5 class="titoloCommento" th:text="${commento.titolo}"></h5>
                         <br />
-                        <p class="testoCommento" th:text="${commento.utente.Username} + ' ' + ${commento.dataOra.toString()}">
+                        <p class="testoCommento"
+                            th:text="${commento.utente.Username} + ' ' + ${commento.dataOra.toString()}">
                         </p>
                         <p class="testoCommento" th:text="${commento.testo}"></p>
                         <br />

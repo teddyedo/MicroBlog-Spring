@@ -37,6 +37,8 @@ public class Post {
     @Setter
     private String Titolo;
 
+    @Getter
+    @Setter
     @ManyToOne(targetEntity = Utente.class)
     private Utente utente;
 

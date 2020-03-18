@@ -50,7 +50,7 @@ public class UserController {
 
         repo.save(u);
         
-        return  "redirect:/MicroBlog";
+        return  "redirect:/Microblog";
     }
 
     @PostMapping(value = "Microblog/loginform")
@@ -68,10 +68,16 @@ public class UserController {
         hasher.putString(newPassword, Charsets.UTF_8);
         String sha256 = hasher.hash().toString();
 
-        if(sha256 == passwordEncrypted){
+        System.out.println(u.getPassword());
+        System.out.println(sha256);
+     
+
+        if(sha256.equals(passwordEncrypted)){
             HttpSession session = request.getSession();
             session.setAttribute("Username", username);
-            return "redirect:/MicroBlog/vediPost";
+            System.out.println(u.getUsername());
+
+            return "redirect:/Microblog/vediPost";
         }
         
         return null;

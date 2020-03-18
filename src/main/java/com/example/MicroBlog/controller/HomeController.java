@@ -13,10 +13,10 @@ public class HomeController {
     @RequestMapping("/")
     
     public String redirectHomePage(){
-        return "redirect:/MicroBlog";
+        return "redirect:/Microblog";
     }
 
-    @RequestMapping("MicroBlog")
+    @RequestMapping("Microblog")
 
     public String getHomePage(){
         return "index.html";
