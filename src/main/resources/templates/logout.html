@@ -4,76 +4,40 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
-  <head>
-    <title>Logout</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}"
-    />
-    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js}"></script>
-    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js}"></script>
-    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+<html xmlns:th="http://www.thymeleaf.org">
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}"
-    />
-    <link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/vendor/css-hamburgers/hamburgers.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/vendor/animsition/css/animsition.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/vendor/select2/select2.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/vendor/daterangepicker/daterangepicker.css}"
-    />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}" />
-  </head>
-  <body>
-    <div class="limiter">
-      <div class="container-login100">
-        <div class="wrap-login100 p-t-85 p-b-20">
-          
-            <span class="login100-form-title p-b-20">
-              Logout eseguito correttamente!
-            </span>
-            <div
-              class="wrap-input100 validate-input m-t-30 m-b-35"
-            >
-            <input
-              type="submit"
-              value="Torna alla Home"
-              class="login100-form-btn"
-              id="button3"
-              onclick="location.href = 'index.html';"
-            />
+<head>
+  <title>Logout</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}" />
+  <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js}"></script>
+  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js}"></script>
+  <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/vendor/animsition/css/animsition.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/vendor/select2/select2.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}" />
+</head>
+
+<body>
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100 p-t-85 p-b-20">
+
+        <span class="login100-form-title p-b-20">
+          Logout eseguito correttamente!
+        </span>
+        <div class="wrap-input100 validate-input m-t-30 m-b-35">
+          <input type="submit" value="Torna alla Home" class="login100-form-btn" id="button3"
+            onclick="location.href = 'index.html';" />
         </div>
       </div>
     </div>
@@ -87,5 +51,6 @@ and open the template in the editor.
     <script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
     <script th:src="@{/js/main.js}"></script>
     <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
-  </body>
+</body>
+
 </html>

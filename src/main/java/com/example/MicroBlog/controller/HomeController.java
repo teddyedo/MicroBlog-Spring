@@ -22,7 +22,20 @@ public class HomeController {
         return "index.html";
     }
 
-    
+    @RequestMapping("Microblog/register")
+    public String getRegistrationPage(){
+        return "register.html";
+    }
+
+    @RequestMapping("Microblog/login")
+    public String getLoginPage() {
+        return "login.html";
+    }
+
+    @RequestMapping("Microblog/logout")
+    public String getLogoutPage() {
+        return "logout.html";
+    }
 
 
     
