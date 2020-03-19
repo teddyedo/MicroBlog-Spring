@@ -83,8 +83,8 @@ and open the template in the editor.
                         <br />
                     </div>
                 </div>
-                <form action="ControllaCreatorCommento">
-                    <button type="submit" class="login100-form-btn" name="th:text='${post.id}'">
+                <form action="listaPost/creaCommento" method="GET">
+                    <button type="submit" class="login100-form-btn" th:name="${post.id}">
                         Commenta
                     </button>
                 </form>

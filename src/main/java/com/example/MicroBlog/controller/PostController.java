@@ -52,10 +52,6 @@ public class PostController {
 
             Utente u = repoU.findByUsername(username);
 
-            
-
-
-
             if ("0".equals(u.getLivello())) {
                 return "creaPost.html";
 
