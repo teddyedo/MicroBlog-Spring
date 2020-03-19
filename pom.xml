@@ -72,7 +72,10 @@
             <artifactId>guava</artifactId>
             <version>19.0</version>
             <type>jar</type>
-        </dependency>
+		</dependency>
+		
+		
+
 	</dependencies>
 
 	<build>
