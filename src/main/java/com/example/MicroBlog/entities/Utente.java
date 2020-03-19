@@ -1,6 +1,5 @@
 package com.example.microblog.entities;
 
-import java.io.Serializable;
 
 import javax.persistence.*;
 
@@ -15,7 +14,7 @@ import lombok.Setter;
  */
 
 @Entity
-public class Utente implements Serializable{
+public class Utente{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
