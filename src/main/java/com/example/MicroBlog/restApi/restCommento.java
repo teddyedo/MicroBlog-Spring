@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.microblog.entities.Commento;
-import com.example.microblog.entities.Commento;
 import com.example.microblog.repository.CommentoRepository;
-import com.example.microblog.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
