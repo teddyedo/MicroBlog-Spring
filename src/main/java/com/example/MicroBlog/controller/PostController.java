@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,12 +16,11 @@ import com.example.microblog.repository.CommentoRepository;
 import com.example.microblog.repository.PostRepository;
 import com.example.microblog.repository.UserRepository;
 
-
 /**
  * PostController
  */
 
- @Controller
+@Controller
 public class PostController {
 
     @Autowired
@@ -32,9 +33,8 @@ public class PostController {
     UserRepository repoU;
 
     @RequestMapping("Microblog/listaPost")
-    public String getListaPost(Model model){
-        
-        
+    public String getListaPost(Model model) {
+
         model.addAttribute("listaPost", repoP.findAll());
         model.addAttribute("commentoRepo", repoC);
 
@@ -42,27 +42,43 @@ public class PostController {
     }
 
     @RequestMapping("Microblog/listaPost/creaPost")
-    public String getPostFormPage(HttpServletRequest request){
-        
-        HttpSession session = request.getSession(false);
-        if(session != null && session.getAttribute("username") != null) {
-            
+    public String getPostFormPage(HttpSession session) {
+
+
+        System.out.println((String) session.getAttribute("username"));
+        if (session != null && session.getAttribute("username") != null) {
+
             String username = (String) session.getAttribute("username");
 
             Utente u = repoU.findByUsername(username);
 
-            if("0".equals(u.getLivello())) {
-                
+            
+
+
+
+            if ("0".equals(u.getLivello())) {
+                return "creaPost.html";
+
+            } else {
+                return "utenteNonAutorizzato.html";
             }
-
-
+        } else {
+            return "utenteNonAutorizzato.html";
         }
 
-        return "creaPost.html";
     }
-    
+
     @RequestMapping("Microblog/listaPost/creaPost/publicPost")
-    public String publicPost(Post p){
-        return "boh";
+    public String publicPost(Post p, HttpSession session) {
+        
+        Date dataOra = new Date();
+        p.setDataOra(dataOra);
+        
+        Utente u = repoU.findByUsername((String) session.getAttribute("username"));
+
+        p.setUtente(u);
+        repoP.save(p);
+
+        return "redirect:/Microblog/listaPost";
     }
 }

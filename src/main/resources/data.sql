@@ -1,5 +1,5 @@
 INSERT INTO utente (username, password, email, salt, Livello) VALUES
-('admin', 'admin', 'admin.admin@admin.com', '1234567891234567', '0'),
+('admin', '15bc455e57bbbd54c7e789dc3bdb4c502f895998893462b7d19b36802baf2a51', 'admin.admin@admin.admin', 'mkLva5dGmwOmS9RqqpHfkw==', '0'),
 ('Edoardo23', 'Gervaso23', 'egosho.ageg@gmail.com', 'sdgesihgoghgigwh', '1'),
 ('Giechician', 'hician', 'egegag.wgaò@gmail.com', 'awfòqoifhsefoggw', '1');
 

@@ -7,7 +7,7 @@ and open the template in the editor.
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>Logout</title>
+  <title>Error!</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}" />
@@ -31,7 +31,7 @@ and open the template in the editor.
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100 p-t-85 p-b-20">
-        <form class="login100-form validate-form" action="stampaPost" autocomplete="off" method="post">
+        <form class="login100-form validate-form" action="/Microblog/listaPost" autocomplete="off" method="GET">
           <span class="login100-form-title p-b-20">
             Non possiedi le autorizzazioni per eseguire questo comando
           </span>

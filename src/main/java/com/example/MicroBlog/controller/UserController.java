@@ -68,14 +68,9 @@ public class UserController {
         hasher.putString(newPassword, Charsets.UTF_8);
         String sha256 = hasher.hash().toString();
 
-        System.out.println(u.getPassword());
-        System.out.println(sha256);
-     
-
         if(sha256.equals(passwordEncrypted)){
             HttpSession session = request.getSession();
-            session.setAttribute("Username", username);
-            System.out.println(u.getUsername());
+            session.setAttribute("username", username);
 
             return "redirect:/Microblog/listaPost";
         }
