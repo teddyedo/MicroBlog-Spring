@@ -35,7 +35,7 @@ public class restPost {
      */
 
     @GetMapping
-    public List<Post> getUsers() {
+    public List<Post> getPosts() {
 
         return repoP.findAll();
     }
@@ -47,7 +47,7 @@ public class restPost {
      */
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Optional<Post>> getUser(@PathVariable("id") long id) {
+    public ResponseEntity<Optional<Post>> getPost(@PathVariable("id") long id) {
 
         if (repoP.findById(id) != null) {
 
@@ -65,7 +65,7 @@ public class restPost {
      */
 
     @PostMapping
-    public ResponseEntity createUser(Post post) {
+    public ResponseEntity createPost(Post post) {
 
         if (post == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -84,7 +84,7 @@ public class restPost {
      */
 
     @PutMapping(value = "{id}")
-    public ResponseEntity modifyUser(@PathVariable("id") Long id, @RequestBody Post post) {
+    public ResponseEntity modifyPost(@PathVariable("id") Long id, @RequestBody Post post) {
 
         if (repoP.findById(id) == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -105,7 +105,7 @@ public class restPost {
      * @return Http response, bad request, created or conflict
      */
     @DeleteMapping(value = "{id}")
-    public ResponseEntity deleteUser(@PathVariable("id") long id) {
+    public ResponseEntity deletePost(@PathVariable("id") long id) {
         if (repoP.findById(id) == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
