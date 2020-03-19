@@ -77,7 +77,7 @@ public class UserController {
             session.setAttribute("Username", username);
             System.out.println(u.getUsername());
 
-            return "redirect:/Microblog/vediPost";
+            return "redirect:/Microblog/listaPost";
         }
         
         return null;
