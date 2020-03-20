@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiParam;
 
 @Api("Basic operations on Posts")
 @RestController
-@RequestMapping("posts")
+@RequestMapping("Microblog/api/posts")
 public class restPost {
 
     @Autowired
