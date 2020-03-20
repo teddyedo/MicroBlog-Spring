@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * restPost
@@ -52,7 +53,7 @@ public class restPost {
 
     @ApiOperation("View the Post with the given ID")
     @GetMapping(value = "{id}")
-    public ResponseEntity<Optional<Post>> getPost(@PathVariable("id") long id) {
+    public ResponseEntity<Optional<Post>> getPost(@ApiParam(value = "The id of the Post that will be returned") @PathVariable("id") long id) {
 
         if (repoP.findById(id) != null) {
 
@@ -71,7 +72,7 @@ public class restPost {
 
     @ApiOperation("Create a new Post")
     @PostMapping
-    public ResponseEntity createPost(Post post) {
+    public ResponseEntity createPost(@ApiParam(value = "The Post that will be created")Post post) {
 
         if (post == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -91,7 +92,7 @@ public class restPost {
 
     @ApiOperation("Modify the Post with the given ID") 
     @PutMapping(value = "{id}")
-    public ResponseEntity modifyPost(@PathVariable("id") Long id, @RequestBody Post post) {
+    public ResponseEntity modifyPost(@ApiParam(value = "The id of the Post that will be modified")@PathVariable("id") Long id, @ApiParam(value = "The Post with the new information")@RequestBody Post post) {
 
         if (repoP.findById(id) == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -113,7 +114,7 @@ public class restPost {
      */
     @ApiOperation("Delete the Post with the given ID")
     @DeleteMapping(value = "{id}")
-    public ResponseEntity deletePost(@PathVariable("id") long id) {
+    public ResponseEntity deletePost(@ApiParam(value = "The id of the Post that will be deleted") @PathVariable("id") long id) {
         if (repoP.findById(id) == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }

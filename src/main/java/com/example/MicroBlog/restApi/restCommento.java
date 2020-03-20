@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * 
@@ -57,7 +58,7 @@ public class restCommento {
 
     @ApiOperation("View the Comment with the given ID") 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Optional<Commento>> getCommento(@PathVariable("id") long id) {
+    public ResponseEntity<Optional<Commento>> getCommento(@ApiParam(value = "The id of the Comment that wil be returned") @PathVariable("id") long id) {
 
         if (repoC.findById(id) != null) {
 
@@ -76,7 +77,7 @@ public class restCommento {
 
     @ApiOperation("Create a new Comment") 
     @PostMapping
-    public ResponseEntity createCommento(Commento commento) {
+    public ResponseEntity createCommento(@ApiParam(value = "The Comment that will be created") Commento commento) {
 
         if (commento == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -96,7 +97,7 @@ public class restCommento {
 
     @ApiOperation("Modify the comment with the given ID") 
     @PutMapping(value = "{id}")
-    public ResponseEntity modifyCommento(@PathVariable("id") Long id, @RequestBody Commento Commento) {
+    public ResponseEntity modifyCommento(@ApiParam(value = "The id of the Comment that will be modified") @PathVariable("id") Long id, @ApiParam(value = "The Comment with the new information") @RequestBody Commento Commento) {
 
         if (repoC.findById(id) == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -119,7 +120,7 @@ public class restCommento {
 
     @ApiOperation("Delete the Comment with the given ID")
     @DeleteMapping(value = "{id}")
-    public ResponseEntity deleteCommento(@PathVariable("id") long id) {
+    public ResponseEntity deleteCommento(@ApiParam(value = "The id of the Comment that will be deleted") @PathVariable("id") long id) {
         if (repoC.findById(id) == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * 
@@ -57,7 +58,7 @@ public class restUtente {
 
     @ApiOperation("View the User with the given ID") 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Optional<Utente>> getUser(@PathVariable("id") long id) {
+    public ResponseEntity<Optional<Utente>> getUser(@ApiParam(value = "The id of the User that will be returned") @PathVariable("id") long id) {
 
         if (repoU.findById(id) != null) {
 
@@ -76,7 +77,7 @@ public class restUtente {
 
     @ApiOperation("Create a new User") 
     @PostMapping
-    public ResponseEntity createUser(Utente user) {
+    public ResponseEntity createUser(@ApiParam(value = "The User that will be created") Utente user) {
 
         if (user == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -96,7 +97,7 @@ public class restUtente {
 
     @ApiOperation("Modify the User with the given ID") 
     @PutMapping(value = "{id}")
-    public ResponseEntity modifyUser(@PathVariable("id") Long id, @RequestBody Utente utente) {
+    public ResponseEntity modifyUser(@ApiParam(value = "The id of the User that will be modified") @PathVariable("id") Long id, @RequestBody @ApiParam(value = "The User with the new information") Utente utente) {
 
         if (repoU.findById(id) == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -119,7 +120,7 @@ public class restUtente {
 
     @ApiOperation("Delete the User with the given ID")
     @DeleteMapping(value = "{id}")
-    public ResponseEntity deleteUser(@PathVariable("id") long id) {
+    public ResponseEntity deleteUser(@ApiParam(value = "The id of the User that will be deleted") @PathVariable("id") long id) {
         if (repoU.findById(id) == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
