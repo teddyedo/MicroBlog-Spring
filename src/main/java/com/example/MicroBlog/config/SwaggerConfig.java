@@ -32,8 +32,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiEndPointsInfo() {
         
-        return new ApiInfoBuilder().title("Spring Boot REST API")
-            .description("Employee Management REST API")
+        return new ApiInfoBuilder().title("Microblog REST API")
+            .description("Microblog Management REST API")
             .contact(new Contact("Allari Edoardo", "www.exampleSite.net", "contactme@gmail.com"))
             .license("Apache 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
