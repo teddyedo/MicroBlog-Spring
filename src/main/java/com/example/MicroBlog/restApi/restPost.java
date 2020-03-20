@@ -18,10 +18,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * restPost
  */
 
+@Api("Basic operations on Posts")
 @RestController
 @RequestMapping("posts")
 public class restPost {
@@ -33,7 +37,7 @@ public class restPost {
      * 
      * @return a list with all the posts
      */
-
+    @ApiOperation("View a list of all the posts")
     @GetMapping
     public List<Post> getPosts() {
 
@@ -46,6 +50,7 @@ public class restPost {
      * @return the Post with the Id given, if it exists
      */
 
+    @ApiOperation("View the Post with the given ID")
     @GetMapping(value = "{id}")
     public ResponseEntity<Optional<Post>> getPost(@PathVariable("id") long id) {
 
@@ -64,6 +69,7 @@ public class restPost {
      * @return Http response, created or bad request
      */
 
+    @ApiOperation("Create a new Post")
     @PostMapping
     public ResponseEntity createPost(Post post) {
 
@@ -83,6 +89,7 @@ public class restPost {
      * @return Http response, bad request, created or conflict
      */
 
+    @ApiOperation("Modify the Post with the given ID") 
     @PutMapping(value = "{id}")
     public ResponseEntity modifyPost(@PathVariable("id") Long id, @RequestBody Post post) {
 
@@ -104,6 +111,7 @@ public class restPost {
      * @param id
      * @return Http response, bad request, created or conflict
      */
+    @ApiOperation("Delete the Post with the given ID")
     @DeleteMapping(value = "{id}")
     public ResponseEntity deletePost(@PathVariable("id") long id) {
         if (repoP.findById(id) == null) {

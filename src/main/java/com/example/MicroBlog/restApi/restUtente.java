@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * 
  * restUtente
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 
  */
 
+@Api("Basic operations on Users")
 @RequestMapping("Microblog/api/users")
 @RestController
 public class restUtente {
@@ -38,6 +42,7 @@ public class restUtente {
      * @return the list of all users
      */
 
+    @ApiOperation("View a list of all the users")
     @GetMapping
     public List<Utente> getUsers() {
 
@@ -50,6 +55,7 @@ public class restUtente {
      * @return the User with the Id given, if it exists
      */
 
+    @ApiOperation("View the User with the given ID") 
     @GetMapping(value = "{id}")
     public ResponseEntity<Optional<Utente>> getUser(@PathVariable("id") long id) {
 
@@ -68,6 +74,7 @@ public class restUtente {
      * @return Http response, created or bad request
      */
 
+    @ApiOperation("Create a new User") 
     @PostMapping
     public ResponseEntity createUser(Utente user) {
 
@@ -87,6 +94,7 @@ public class restUtente {
      * @return Http response, bad request, created or conflict
      */
 
+    @ApiOperation("Modify the User with the given ID") 
     @PutMapping(value = "{id}")
     public ResponseEntity modifyUser(@PathVariable("id") Long id, @RequestBody Utente utente) {
 
@@ -108,6 +116,8 @@ public class restUtente {
      * @param id
      * @return Http response, bad request, created or conflict
      */
+
+    @ApiOperation("Delete the User with the given ID")
     @DeleteMapping(value = "{id}")
     public ResponseEntity deleteUser(@PathVariable("id") long id) {
         if (repoU.findById(id) == null) {

@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * 
  * restCommento
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 
  */
 
+@Api("Basic operations on Comments")
 @RequestMapping("Microblog/api/comments")
 @RestController
 public class restCommento {
@@ -38,6 +42,7 @@ public class restCommento {
      * @return the list of all comments
      */
 
+    @ApiOperation("View the list of all the Comments")
     @GetMapping
     public List<Commento> getComments() {
 
@@ -50,6 +55,7 @@ public class restCommento {
      * @return the comment with the Id given, if it exists
      */
 
+    @ApiOperation("View the Comment with the given ID") 
     @GetMapping(value = "{id}")
     public ResponseEntity<Optional<Commento>> getCommento(@PathVariable("id") long id) {
 
@@ -68,6 +74,7 @@ public class restCommento {
      * @return Http response, created or bad request
      */
 
+    @ApiOperation("Create a new Comment") 
     @PostMapping
     public ResponseEntity createCommento(Commento commento) {
 
@@ -87,6 +94,7 @@ public class restCommento {
      * @return Http response, bad request, created or conflict
      */
 
+    @ApiOperation("Modify the comment with the given ID") 
     @PutMapping(value = "{id}")
     public ResponseEntity modifyCommento(@PathVariable("id") Long id, @RequestBody Commento Commento) {
 
@@ -108,6 +116,8 @@ public class restCommento {
      * @param id
      * @return Http response, bad request, created or conflict
      */
+
+    @ApiOperation("Delete the Comment with the given ID")
     @DeleteMapping(value = "{id}")
     public ResponseEntity deleteCommento(@PathVariable("id") long id) {
         if (repoC.findById(id) == null) {
