@@ -1,6 +1,6 @@
 # MicroBlog-Spring
 
-!["School project"](https://https://img.shields.io/badge/PROJECT%20TYPE-SCHOOL-yellow)
+!["School project"](https://img.shields.io/badge/PROJECT%20TYPE-SCHOOL-yellow)
  ![](https://img.shields.io/badge/Project%20type-School%20Project-important?style=for-the-badge)
  ![](https://img.shields.io/badge/LICENSE-UNLICENSE-brightgreen?style=for-the-badge)
 
