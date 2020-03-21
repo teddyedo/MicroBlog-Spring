@@ -1,4 +1,4 @@
-/*package com.example.microblog.security;
+package com.example.microblog.security;
 
 import javax.sql.DataSource;
 
@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 /**
  * SecurityConfiguration
  */
-/*
+
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -59,4 +59,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/", "resources/static/css", "resources/static/fonts", "resources/static/js", "resources/static/vendor").permitAll()
             .and().formLogin();
     }
-}*/
+}
