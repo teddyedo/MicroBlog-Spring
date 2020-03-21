@@ -72,7 +72,7 @@ public class UserController {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
 
-            return "redirect:/Microblog/listaPost";
+            return "redirect:/Microblog/posts";
         }
         
         return "Username o password non inseriti correttamente";

@@ -31,7 +31,7 @@ public class PostController {
     @Autowired
     UserRepository repoU;
 
-    @RequestMapping("Microblog/listaPost")
+    @RequestMapping("Microblog/posts")
     public String getListaPost(Model model) {
 
         model.addAttribute("listaPost", repoP.findAll());
@@ -40,7 +40,7 @@ public class PostController {
         return "postList.html";
     }
 
-    @RequestMapping("Microblog/listaPost/creaPost")
+    @RequestMapping("Microblog/posts/newpost")
     public String getPostFormPage(HttpSession session) {
 
 
@@ -63,7 +63,7 @@ public class PostController {
 
     }
 
-    @RequestMapping("Microblog/listaPost/creaPost/publicPost")
+    @RequestMapping("Microblog/posts/newpost/publishpost")
     public String publicPost(Post p, HttpSession session) {
         
         Date dataOra = new Date();
@@ -74,6 +74,6 @@ public class PostController {
         p.setUtente(u);
         repoP.save(p);
 
-        return "redirect:/Microblog/listaPost";
+        return "redirect:/Microblog/posts";
     }
 }

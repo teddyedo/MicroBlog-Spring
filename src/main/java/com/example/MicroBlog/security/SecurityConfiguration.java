@@ -1,6 +1,6 @@
 package com.example.microblog.security;
 
-import org.springframework.context.annotation.Bean;
+/*import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 /**
  * SecurityConfiguration
  */
-
+/*
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
             .withUser("gervaso")
             .password("gervaso")
-            .roles("ADMIN")
+            .roles("ADMIN");
             
     }
     
@@ -33,4 +33,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public PasswordEncoder getPasswordEncoder(){
         return NoOpPasswordEncoder.getInstance();
     }
-}
+}*/

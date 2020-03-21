@@ -1,7 +1,6 @@
 package com.example.microblog.controller;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,12 +31,10 @@ public class CommentoController {
     @Autowired
     CommentoRepository repoC;
 
-    @RequestMapping("Microblog/listaPost/creaCommento")
+    @RequestMapping("Microblog/comments/newcomment")
     public String getCommentoFormPage(HttpSession session, HttpServletRequest request) {
 
         if (session != null && session.getAttribute("username") != null) {
-
-            Utente u = repoU.findByUsername((String) session.getAttribute("username"));
 
             Iterable<Post> listaPost = repoP.findAll();
             Post post = null;
@@ -57,7 +54,7 @@ public class CommentoController {
 
     }
 
-    @RequestMapping("Microblog/listaPost/creaCommento/publicCommento")
+    @RequestMapping("Microblog/comments/publishcomment")
     public String publicCommento(Commento c, HttpSession session) {
 
         Date dataOra = new Date();
@@ -71,6 +68,6 @@ public class CommentoController {
 
         repoC.save(c);
 
-        return "redirect:/Microblog/listaPost";
+        return "redirect:/Microblog/posts";
     }
 }
