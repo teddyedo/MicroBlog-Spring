@@ -75,7 +75,7 @@ public class UserController {
             return "redirect:/Microblog/listaPost";
         }
         
-        return null;
+        return "Username o password non inseriti correttamente";
     }
     
 }
