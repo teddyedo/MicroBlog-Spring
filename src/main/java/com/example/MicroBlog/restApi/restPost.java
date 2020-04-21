@@ -51,18 +51,18 @@ public class restPost {
      * @return the Post with the Id given, if it exists
      */
 
-    @ApiOperation("View the Post with the given ID")
-    @GetMapping(value = "{id}")
-    public ResponseEntity<Optional<Post>> getPost(@ApiParam(value = "The id of the Post that will be returned") @PathVariable("id") long id) {
-
-        if (repoP.findById(id) != null) {
-
-            return new ResponseEntity<Optional<Post>>(repoP.findById(id), HttpStatus.OK);
-
-        } else {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @ApiOperation("View the Post with the given ID")
+//    @GetMapping(value = "{id}")
+//    public ResponseEntity<Optional<Post>> getPost(@ApiParam(value = "The id of the Post that will be returned") @PathVariable("id") String id) {
+//
+//        if (repoP.findById(Long.parseLong(id)) != null) {
+//
+//            return new ResponseEntity<Optional<Post>>(repoP.findById(Long.parseLong(id)), HttpStatus.OK);
+//
+//        } else {
+//            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
     /**
      * 
@@ -72,7 +72,7 @@ public class restPost {
 
     @ApiOperation("Create a new Post")
     @PostMapping
-    public ResponseEntity createPost(@ApiParam(value = "The Post that will be created")Post post) {
+    public ResponseEntity createPost(@ApiParam(value = "The Post that will be created") @RequestBody Post post) {
 
         if (post == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -128,3 +128,18 @@ public class restPost {
     }
 
 }
+
+
+
+
+    @GetMapping(value = "{resourceName}")
+    public ResponseEntity<Optional<PaginaWeb>> getPaginaWeb( @PathVariable("resourceName") String resourceName) {
+
+        if (repoP.findByName(resourceName) != null) {
+
+            return new ResponseEntity<Optional<PaginaWeb>>(repoP.findByName(resourceName), HttpStatus.OK);
+
+        } else {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }

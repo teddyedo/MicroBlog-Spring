@@ -1,7 +1,7 @@
-INSERT INTO utente (username, password, email, salt, Livello) VALUES
-('admin', '15bc455e57bbbd54c7e789dc3bdb4c502f895998893462b7d19b36802baf2a51', 'admin.admin@admin.admin', 'mkLva5dGmwOmS9RqqpHfkw==', '0'),
-('Edoardo23', 'Gervaso23', 'egosho.ageg@gmail.com', 'sdgesihgoghgigwh', '1'),
-('Giechician', 'hician', 'egegag.wgaò@gmail.com', 'awfòqoifhsefoggw', '1');
+INSERT INTO utente (username, password, email, salt, Roles) VALUES
+('admin', '15bc455e57bbbd54c7e789dc3bdb4c502f895998893462b7d19b36802baf2a51', 'admin.admin@admin.admin', 'mkLva5dGmwOmS9RqqpHfkw==', 'ADMIN'),
+('Edoardo23', 'Gervaso23', 'egosho.ageg@gmail.com', 'sdgesihgoghgigwh', 'USER'),
+('Giechician', 'hician', 'egegag.wgaò@gmail.com', 'awfòqoifhsefoggw', 'USER');
 
 INSERT INTO post (data_ora, testo, titolo, utente_id) VALUES
 ('2020-01-01 10:32:21', 'Serie A', 'La Juve vola in testa alla classifica rubando!', '1'),

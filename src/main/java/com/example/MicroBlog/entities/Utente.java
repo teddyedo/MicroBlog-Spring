@@ -50,18 +50,20 @@ public class Utente{
     @Basic
     @Getter
     @Setter
-    private String Livello;
+    private String Roles;
 
     public Utente() {
     }
 
-    public Utente(long id, String username, String password, String email, String sALT, String livello) {
+    public Utente(long id, String username, String password, String email, String sALT, String roles) {
         this.Id = id;
         this.Username = username;
         this.Password = password;
         this.Email = email;
         this.SALT = sALT;
-        this.Livello = livello;
+        this.Roles = roles;
     }
+
+
 
 }

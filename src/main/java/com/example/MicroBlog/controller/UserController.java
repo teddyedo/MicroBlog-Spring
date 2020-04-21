@@ -46,7 +46,7 @@ public class UserController {
 
         u.setPassword(sha256);
         u.setSALT(salt);
-        u.setLivello("1");
+        u.setRoles("USER");
 
         repo.save(u);
         
@@ -54,9 +54,9 @@ public class UserController {
     }
 
     @PostMapping(value = "Microblog/loginform")
-    public String userLogin(String username, String password, HttpServletRequest request){
+    public void userLogin(String username, String password, HttpServletRequest request){
 
-        Utente u = repo.findByUsername(username);
+        /*Utente u = repo.findByUsername(username);
 
         Hasher hasher = Hashing.sha256().newHasher();
 
@@ -70,13 +70,8 @@ public class UserController {
 
         if(sha256.equals(passwordEncrypted)){
             HttpSession session = request.getSession();
-            session.setAttribute("username", username);
+            session.setAttribute("username", username);*/
 
-            return "redirect:/Microblog/posts";
         }
-        
-        return "Username o password non inseriti correttamente";
-    }
-    
 }
 

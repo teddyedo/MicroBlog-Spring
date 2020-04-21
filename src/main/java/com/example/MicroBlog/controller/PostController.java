@@ -40,30 +40,13 @@ public class PostController {
         return "postList.html";
     }
 
-    @RequestMapping("Microblog/posts/newpost")
-    public String getPostFormPage(HttpSession session) {
-
-
-        System.out.println((String) session.getAttribute("username"));
-        if (session != null && session.getAttribute("username") != null) {
-
-            String username = (String) session.getAttribute("username");
-
-            Utente u = repoU.findByUsername(username);
-
-            if ("0".equals(u.getLivello())) {
-                return "creaPost.html";
-
-            } else {
-                return "utenteNonAutorizzato.html";
-            }
-        } else {
-            return "utenteNonAutorizzato.html";
-        }
-
+    @RequestMapping("Microblog/posts/creapost")
+    public String getPostForm(){
+        return "creaPost.html";
     }
 
-    @RequestMapping("Microblog/posts/newpost/publishpost")
+    
+    @RequestMapping("Microblog/posts/newpost")
     public String publicPost(Post p, HttpSession session) {
         
         Date dataOra = new Date();

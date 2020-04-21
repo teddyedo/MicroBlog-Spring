@@ -1,5 +1,7 @@
 package com.example.microblog.repository;
 
+import java.util.Optional;
+
 import com.example.microblog.entities.Utente;
 
 import org.springframework.data.jpa.repository.JpaRepository;

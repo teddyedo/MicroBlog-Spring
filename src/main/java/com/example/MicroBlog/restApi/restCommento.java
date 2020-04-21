@@ -58,11 +58,11 @@ public class restCommento {
 
     @ApiOperation("View the Comment with the given ID") 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Optional<Commento>> getCommento(@ApiParam(value = "The id of the Comment that wil be returned") @PathVariable("id") long id) {
+    public ResponseEntity<Optional<Commento>> getCommento(@ApiParam(value = "The id of the Comment that wil be returned") @PathVariable("id") String id) {
 
-        if (repoC.findById(id) != null) {
+        if (repoC.findById(Long.parseLong(id)) != null) {
 
-            return new ResponseEntity<Optional<Commento>>(repoC.findById(id), HttpStatus.OK);
+            return new ResponseEntity<Optional<Commento>>(repoC.findById(Long.parseLong(id)), HttpStatus.OK);
 
         } else {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -71,13 +71,13 @@ public class restCommento {
 
     /**
      * 
-     * @param user
+     * @param commento
      * @return Http response, created or bad request
      */
 
     @ApiOperation("Create a new Comment") 
     @PostMapping
-    public ResponseEntity createCommento(@ApiParam(value = "The Comment that will be created") Commento commento) {
+    public ResponseEntity createCommento(@ApiParam(value = "The Comment that will be created") @RequestBody Commento commento) {
 
         if (commento == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

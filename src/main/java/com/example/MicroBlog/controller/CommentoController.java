@@ -31,30 +31,12 @@ public class CommentoController {
     @Autowired
     CommentoRepository repoC;
 
-    @RequestMapping("Microblog/comments/newcomment")
-    public String getCommentoFormPage(HttpSession session, HttpServletRequest request) {
-
-        if (session != null && session.getAttribute("username") != null) {
-
-            Iterable<Post> listaPost = repoP.findAll();
-            Post post = null;
-
-            for (Post p : listaPost) {
-                if (request.getParameter(String.valueOf(p.getId())) != null) {
-                    post = p;
-                    break;
-                }
-            }
-
-            session.setAttribute("post", post);
-            return "creaCommento.html";
-        } else {
-            return "utenteNonAutorizzato.html";
-        }
-
+    @RequestMapping("Microblog/comments/creacomment")
+    public String creaCommento(){
+        return "creaCommento.html";
     }
 
-    @RequestMapping("Microblog/comments/publishcomment")
+    @RequestMapping("Microblog/comments/newcomment")
     public String publicCommento(Commento c, HttpSession session) {
 
         Date dataOra = new Date();

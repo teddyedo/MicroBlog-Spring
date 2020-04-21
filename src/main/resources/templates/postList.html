@@ -39,7 +39,7 @@ and open the template in the editor.
                 <span class="login100-form-title p-b-30">
                     Benvenuto nella lista dei post
                 </span>
-                <form action="posts/newpost" method="GET">
+                <form action="posts/creapost" method="GET">
                     <button type="submit" class="login100-form-btn" id="button3">
                         Crea nuovo post
                     </button>
@@ -83,7 +83,7 @@ and open the template in the editor.
                         <br />
                     </div>
                 </div>
-                <form action="comments/newcomment" method="GET">
+                <form action="comments/creacomment" method="GET">
                     <button type="submit" class="login100-form-btn" th:name="${post.id}">
                         Commenta
                     </button>

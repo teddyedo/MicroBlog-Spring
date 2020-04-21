@@ -1,6 +1,7 @@
 package com.example.microblog.entities;
 
 import java.util.Date;
+
 import javax.persistence.*;
 
 import lombok.Getter;
@@ -58,5 +59,7 @@ public class Commento{
         this.utente = utente;
         this.post = post;
     }
+
+	
 
 }
