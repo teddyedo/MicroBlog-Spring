@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.example.microblog"},{"l":"com.example.microblog.config"},{"l":"com.example.microblog.controller"},{"l":"com.example.microblog.entities"},{"l":"com.example.microblog.exception"},{"l":"com.example.microblog.repository"},{"l":"com.example.microblog.restApi"},{"l":"com.example.microblog.security"}]

@@ -1,0 +1,8 @@
+com.example.microblog
+com.example.microblog.config
+com.example.microblog.controller
+com.example.microblog.entities
+com.example.microblog.exception
+com.example.microblog.repository
+com.example.microblog.restApi
+com.example.microblog.security
