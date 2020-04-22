@@ -3,9 +3,15 @@ package com.example.microblog.restApi;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.microblog.entities.Commento;
+import com.example.microblog.entities.Post;
 import com.example.microblog.entities.Utente;
+import com.example.microblog.repository.CommentoRepository;
+import com.example.microblog.repository.PostRepository;
 import com.example.microblog.repository.UserRepository;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +29,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 /**
- * 
  * restUtente
- * 
+ *
  * @author Allari Edoardo
- * 
  */
 
 @Api("Basic operations on Users")
@@ -38,8 +42,21 @@ public class restUtente {
     @Autowired
     UserRepository repoU;
 
+    @Autowired
+    CommentoRepository repoC;
+
+    @Autowired
+    PostRepository repoP;
+
+    @Autowired
+    restPost restP;
+
+    @Autowired
+    restCommento restC;
+
     /**
      * Get the list of all users
+     *
      * @return the list of all users
      */
 
@@ -53,10 +70,11 @@ public class restUtente {
 
     /**
      * Find a user by ID
+     *
      * @param id User Id
      * @return the User with the Id given, if it exists
      */
-    @ApiOperation("View the User with the given ID") 
+    @ApiOperation("View the User with the given ID")
     @GetMapping(value = "{id}")
     public ResponseEntity<Utente> getUser(@ApiParam(value = "The id of the User that will be returned")
                                           @PathVariable("id") String id) {
@@ -74,11 +92,12 @@ public class restUtente {
 
     /**
      * Create a new user
+     *
      * @param user JSON formatted user
      * @return Http response, created or bad request
      */
 
-    @ApiOperation("Create a new User") 
+    @ApiOperation("Create a new User")
     @PostMapping
     public ResponseEntity createUser(@ApiParam(value = "The User that will be created") Utente user) {
 
@@ -93,12 +112,13 @@ public class restUtente {
 
     /**
      * Modify the user with the given ID
-     * @param id user id
+     *
+     * @param id     user id
      * @param utente JSON formatted user with changes
      * @return Http response, bad request, created or conflict
      */
 
-    @ApiOperation("Modify the User with the given ID") 
+    @ApiOperation("Modify the User with the given ID")
     @PutMapping(value = "{id}")
     public ResponseEntity modifyUser(@ApiParam(value = "The id of the User that will be modified")
                                      @PathVariable("id") String id,
@@ -107,10 +127,9 @@ public class restUtente {
 
         Optional<Utente> op = repoU.findById(Long.parseLong(id));
 
-        if (! op.isPresent()) {
+        if (!op.isPresent()) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-        else{
+        } else {
             repoU.save(utente);
             return new ResponseEntity(HttpStatus.OK);
         }
@@ -118,6 +137,7 @@ public class restUtente {
 
     /**
      * Delete the user with the given Id
+     *
      * @param id user id
      * @return Http response, bad request, created or conflict
      */
@@ -130,9 +150,19 @@ public class restUtente {
         Optional<Utente> op = repoU.findById(Long.parseLong(id));
 
         if (!op.isPresent()) {
+
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-        else{
+        } else {
+            List<Post> postList = repoP.findByUtente(op.get());
+            for (Post p : postList) {
+                restP.deletePost(String.valueOf(p.getId()));
+            }
+
+            List<Commento> commentList = repoC.findByUtente(op.get());
+            for (Commento c : commentList) {
+                restC.deleteCommento(String.valueOf(c.getId()));
+            }
+
             repoU.deleteById(Long.parseLong(id));
             return new ResponseEntity(HttpStatus.OK);
         }

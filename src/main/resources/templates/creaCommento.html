@@ -31,7 +31,7 @@ and open the template in the editor.
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100 p-t-85 p-b-20">
-        <form class="login100-form validate-form" autocomplete="off" action="newcomment" method="POST">
+        <form class="login100-form validate-form" autocomplete="off" th:action="@{/Microblog/comments/newcomment/} + ${postId}" method="POST">
           <span class="login100-form-title p-b-30">
             Scrivi il commento
           </span>

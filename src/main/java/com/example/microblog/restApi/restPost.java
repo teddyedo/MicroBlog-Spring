@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import com.example.microblog.entities.Commento;
 import com.example.microblog.entities.Post;
 import com.example.microblog.entities.Utente;
+import com.example.microblog.repository.CommentoRepository;
 import com.example.microblog.repository.PostRepository;
 
 import com.example.microblog.repository.UserRepository;
@@ -39,6 +41,12 @@ public class restPost {
 
     @Autowired
     UserRepository repoU;
+
+    @Autowired
+    CommentoRepository repoC;
+
+    @Autowired
+    restCommento restC;
 
     /**
      * Get the list of all posts
@@ -138,6 +146,10 @@ public class restPost {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
         else{
+            List<Commento> commentList = repoC.findByPost(op.get());
+            for (Commento c : commentList){
+                restC.deleteCommento(String.valueOf(c.getId()));
+            }
             repoP.deleteById(Long.parseLong(id));
             return new ResponseEntity(HttpStatus.OK);
         }
@@ -153,6 +165,7 @@ public class restPost {
         if (!u.isPresent()){
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }else{
+
             List<Post> list = repoP.findByUtente(u.get());
             return new ResponseEntity<List<Post>>(list, HttpStatus.OK);
         }

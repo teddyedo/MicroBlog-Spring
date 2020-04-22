@@ -83,7 +83,7 @@ and open the template in the editor.
                         <br />
                     </div>
                 </div>
-                <form action="comments/creacomment" method="GET">
+                <form th:action="@{comments/creacomment/} + ${post.id}" method="GET">
                     <button type="submit" class="login100-form-btn" th:name="${post.id}">
                         Commenta
                     </button>
