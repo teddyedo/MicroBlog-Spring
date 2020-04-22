@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 
 /**
  * 
@@ -14,7 +15,7 @@ import lombok.Setter;
  */
 
 @Entity
-public class Post {
+public class Post extends RepresentationModel<Post> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,10 +2,13 @@ package com.example.microblog.restApi;
 
 import java.util.List;
 import java.util.Optional;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import com.example.microblog.entities.Post;
+import com.example.microblog.entities.Utente;
 import com.example.microblog.repository.PostRepository;
 
+import com.example.microblog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,45 +37,55 @@ public class restPost {
     @Autowired
     PostRepository repoP;
 
+    @Autowired
+    UserRepository repoU;
+
     /**
-     * 
+     * Get the list of all posts
      * @return a list with all the posts
      */
     @ApiOperation("View a list of all the posts")
     @GetMapping
-    public List<Post> getPosts() {
+    public ResponseEntity<List<Post>> getPosts() {
 
-        return repoP.findAll();
+        List<Post> list = repoP.findAll();
+        return new ResponseEntity<List<Post>>(list, HttpStatus.OK);
     }
 
     /**
-     * 
-     * @param id
+     * Find Post by Id
+     * @param id postID
      * @return the Post with the Id given, if it exists
      */
 
-//    @ApiOperation("View the Post with the given ID")
-//    @GetMapping(value = "{id}")
-//    public ResponseEntity<Optional<Post>> getPost(@ApiParam(value = "The id of the Post that will be returned") @PathVariable("id") String id) {
-//
-//        if (repoP.findById(Long.parseLong(id)) != null) {
-//
-//            return new ResponseEntity<Optional<Post>>(repoP.findById(Long.parseLong(id)), HttpStatus.OK);
-//
-//        } else {
-//            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @ApiOperation("View the Post with the given ID")
+    @GetMapping(value = "{id}")
+    public ResponseEntity<Optional<Post>> getPost(@ApiParam(value = "The id of the Post that will be returned")
+                                                  @PathVariable("id") String id) {
+
+        Optional<Post> op = repoP.findById(Long.parseLong(id));
+        if (op.isPresent()) {
+            Post p = op.get();
+            p.add(linkTo(methodOn(restPost.class).getPost(id)).withSelfRel());
+            p.add(linkTo(methodOn(restPost.class).getPosts()).withRel("posts"));
+            p.add(linkTo(methodOn(restUtente.class).getUser((String.valueOf(p.getUtente().getId())))).withRel("user"));
+            return new ResponseEntity<Optional<Post>>(repoP.findById(Long.parseLong(id)), HttpStatus.OK);
+
+        } else {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
 
     /**
-     * 
-     * @param post
+     * Create a new post
+     * @param post JSON formatted post
      * @return Http response, created or bad request
      */
 
     @ApiOperation("Create a new Post")
     @PostMapping
-    public ResponseEntity createPost(@ApiParam(value = "The Post that will be created") @RequestBody Post post) {
+    public ResponseEntity createPost(@ApiParam(value = "The Post that will be created")
+                                     @RequestBody Post post) {
 
         if (post == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -84,47 +97,66 @@ public class restPost {
     }
 
     /**
-     * 
-     * @param id
-     * @param post
+     * Modify the post with the given ID
+     * @param id post id
+     * @param post JSON formatted user with changes
      * @return Http response, bad request, created or conflict
      */
 
     @ApiOperation("Modify the Post with the given ID") 
     @PutMapping(value = "{id}")
-    public ResponseEntity modifyPost(@ApiParam(value = "The id of the Post that will be modified")@PathVariable("id") Long id, @ApiParam(value = "The Post with the new information")@RequestBody Post post) {
+    public ResponseEntity modifyPost(@ApiParam(value = "The id of the Post that will be modified")
+                                     @PathVariable("id") String id,
+                                     @ApiParam(value = "The Post with the new information")
+                                     @RequestBody Post post) {
 
-        if (repoP.findById(id) == null) {
+        Optional<Post> op = repoP.findById(Long.parseLong(id));
+
+        if (!op.isPresent()) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
-        else if (repoP.findById(id) != null) {
+        else{
             repoP.save(post);
             return new ResponseEntity(HttpStatus.OK);
-        } else {
-            return new ResponseEntity(HttpStatus.CONFLICT);
         }
-
     }
 
     /**
-     * 
-     * @param id
+     * Delete the post with the given Id
+     * @param id post Id
      * @return Http response, bad request, created or conflict
      */
     @ApiOperation("Delete the Post with the given ID")
     @DeleteMapping(value = "{id}")
-    public ResponseEntity deletePost(@ApiParam(value = "The id of the Post that will be deleted") @PathVariable("id") long id) {
-        if (repoP.findById(id) == null) {
+    public ResponseEntity deletePost(@ApiParam(value = "The id of the Post that will be deleted")
+                                     @PathVariable("id") String id) {
+
+        Optional<Post> op = repoP.findById(Long.parseLong(id));
+
+        if (!op.isPresent()) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
-
-        else if (repoP.findById(id) != null) {
-            repoP.deleteById(id);
+        else{
+            repoP.deleteById(Long.parseLong(id));
             return new ResponseEntity(HttpStatus.OK);
-        } else {
-            return new ResponseEntity(HttpStatus.CONFLICT);
         }
+    }
+
+    @ApiOperation("Get all the posts made by the user with the given Id")
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity getPostsByUserId(@ApiParam(value = "The id of the user that made the posts")
+                                           @PathVariable("id") String id){
+
+        Optional<Utente> u = repoU.findById(Long.parseLong(id));
+
+        if (!u.isPresent()){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }else{
+            List<Post> list = repoP.findByUtente(u.get());
+            return new ResponseEntity<List<Post>>(list, HttpStatus.OK);
+        }
+
     }
 
 }

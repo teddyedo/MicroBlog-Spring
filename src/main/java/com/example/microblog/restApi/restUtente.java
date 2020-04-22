@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.example.microblog.entities.Utente;
 import com.example.microblog.repository.UserRepository;
-
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,39 +39,42 @@ public class restUtente {
     UserRepository repoU;
 
     /**
-     * 
+     * Get the list of all users
      * @return the list of all users
      */
 
     @ApiOperation("View a list of all the users")
     @GetMapping
-    public List<Utente> getUsers() {
+    public ResponseEntity<List<Utente>> getUsers() {
 
-        return repoU.findAll();
+        List<Utente> list = repoU.findAll();
+        return new ResponseEntity<List<Utente>>(list, HttpStatus.OK);
     }
 
     /**
-     * 
-     * @param id
+     * Find a user by ID
+     * @param id User Id
      * @return the User with the Id given, if it exists
      */
-
     @ApiOperation("View the User with the given ID") 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Optional<Utente>> getUser(@ApiParam(value = "The id of the User that will be returned") @PathVariable("id") long id) {
-
-        if (repoU.findById(id) != null) {
-
-            return new ResponseEntity<Optional<Utente>>(repoU.findById(id), HttpStatus.OK);
-
+    public ResponseEntity<Utente> getUser(@ApiParam(value = "The id of the User that will be returned")
+                                          @PathVariable("id") String id) {
+        Optional<Utente> op = repoU.findById(Long.parseLong(id));
+        if (op.isPresent()) {
+            Utente u = op.get();
+            u.add(linkTo(methodOn(restUtente.class).getUser(id)).withSelfRel());
+            u.add(linkTo(methodOn(restUtente.class).getUsers()).withRel("users"));
+            u.add(linkTo(methodOn(restPost.class).getPostsByUserId(id)).withRel("posts"));
+            return new ResponseEntity<Utente>(u, HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 
     /**
-     * 
-     * @param user
+     * Create a new user
+     * @param user JSON formatted user
      * @return Http response, created or bad request
      */
 
@@ -89,47 +92,49 @@ public class restUtente {
     }
 
     /**
-     * 
-     * @param id
-     * @param utente
+     * Modify the user with the given ID
+     * @param id user id
+     * @param utente JSON formatted user with changes
      * @return Http response, bad request, created or conflict
      */
 
     @ApiOperation("Modify the User with the given ID") 
     @PutMapping(value = "{id}")
-    public ResponseEntity modifyUser(@ApiParam(value = "The id of the User that will be modified") @PathVariable("id") Long id, @RequestBody @ApiParam(value = "The User with the new information") Utente utente) {
+    public ResponseEntity modifyUser(@ApiParam(value = "The id of the User that will be modified")
+                                     @PathVariable("id") String id,
+                                     @ApiParam(value = "The User with the new information")
+                                     @RequestBody Utente utente) {
 
-        if (repoU.findById(id) == null) {
+        Optional<Utente> op = repoU.findById(Long.parseLong(id));
+
+        if (! op.isPresent()) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
-
-        else if (repoU.findById(id) != null) {
+        else{
             repoU.save(utente);
             return new ResponseEntity(HttpStatus.OK);
-        } else {
-            return new ResponseEntity(HttpStatus.CONFLICT);
         }
-
     }
 
     /**
-     * 
-     * @param id
+     * Delete the user with the given Id
+     * @param id user id
      * @return Http response, bad request, created or conflict
      */
 
     @ApiOperation("Delete the User with the given ID")
     @DeleteMapping(value = "{id}")
-    public ResponseEntity deleteUser(@ApiParam(value = "The id of the User that will be deleted") @PathVariable("id") long id) {
-        if (repoU.findById(id) == null) {
+    public ResponseEntity deleteUser(@ApiParam(value = "The id of the User that will be deleted")
+                                     @PathVariable("id") String id) {
+
+        Optional<Utente> op = repoU.findById(Long.parseLong(id));
+
+        if (!op.isPresent()) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
-
-        else if (repoU.findById(id) != null) {
-            repoU.deleteById(id);
+        else{
+            repoU.deleteById(Long.parseLong(id));
             return new ResponseEntity(HttpStatus.OK);
-        } else {
-            return new ResponseEntity(HttpStatus.CONFLICT);
         }
     }
 

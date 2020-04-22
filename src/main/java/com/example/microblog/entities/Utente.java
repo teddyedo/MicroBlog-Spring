@@ -5,6 +5,8 @@ import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
+
 
 /**
  * 
@@ -14,7 +16,7 @@ import lombok.Setter;
  */
 
 @Entity
-public class Utente{
+public class Utente extends RepresentationModel<Utente> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

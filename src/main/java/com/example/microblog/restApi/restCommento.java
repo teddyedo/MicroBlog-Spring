@@ -2,6 +2,7 @@ package com.example.microblog.restApi;
 
 import java.util.List;
 import java.util.Optional;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import com.example.microblog.entities.Commento;
 import com.example.microblog.repository.CommentoRepository;
@@ -39,30 +40,36 @@ public class restCommento {
     CommentoRepository repoC;
 
     /**
-     * 
+     * Get the list of all comments
      * @return the list of all comments
      */
 
     @ApiOperation("View the list of all the Comments")
     @GetMapping
-    public List<Commento> getComments() {
+    public ResponseEntity<List<Commento>> getComments() {
 
-        return repoC.findAll();
+        List<Commento> list = repoC.findAll();
+        return new ResponseEntity<List<Commento>>(list, HttpStatus.OK);
     }
 
     /**
-     * 
-     * @param id
+     * Find a comment by Id
+     * @param id Comment Id
      * @return the comment with the Id given, if it exists
      */
 
     @ApiOperation("View the Comment with the given ID") 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Optional<Commento>> getCommento(@ApiParam(value = "The id of the Comment that wil be returned") @PathVariable("id") String id) {
-
-        if (repoC.findById(Long.parseLong(id)) != null) {
-
-            return new ResponseEntity<Optional<Commento>>(repoC.findById(Long.parseLong(id)), HttpStatus.OK);
+    public ResponseEntity<Commento> getCommento(@ApiParam(value = "The id of the Comment that wil be returned")
+                                                          @PathVariable("id") String id) {
+        Optional<Commento> op = repoC.findById(Long.parseLong(id));
+        if (op.isPresent()) {
+            Commento c = op.get();
+            c.add(linkTo(methodOn(restCommento.class).getCommento(id)).withSelfRel());
+            c.add(linkTo(methodOn(restCommento.class).getComments()).withRel("comments"));
+            c.add(linkTo(methodOn(restUtente.class).getUser(String.valueOf(c.getId()))).withRel("user"));
+            c.add(linkTo(methodOn(restPost.class).getPost(String.valueOf(c.getPost().getId()))).withRel("post"));
+            return new ResponseEntity<Commento>(c, HttpStatus.OK);
 
         } else {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -70,14 +77,15 @@ public class restCommento {
     }
 
     /**
-     * 
-     * @param commento
+     * Create a new comment
+     * @param commento JSON formatted comment
      * @return Http response, created or bad request
      */
 
     @ApiOperation("Create a new Comment") 
     @PostMapping
-    public ResponseEntity createCommento(@ApiParam(value = "The Comment that will be created") @RequestBody Commento commento) {
+    public ResponseEntity createComment(@ApiParam(value = "The Comment that will be created")
+                                         @RequestBody Commento commento) {
 
         if (commento == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -89,47 +97,51 @@ public class restCommento {
     }
 
     /**
-     * 
-     * @param id
-     * @param Commento
+     * Modify the comment with the given ID
+     * @param id comment id
+     * @param Commento JSON formatted comment with changes
      * @return Http response, bad request, created or conflict
      */
 
     @ApiOperation("Modify the comment with the given ID") 
     @PutMapping(value = "{id}")
-    public ResponseEntity modifyCommento(@ApiParam(value = "The id of the Comment that will be modified") @PathVariable("id") Long id, @ApiParam(value = "The Comment with the new information") @RequestBody Commento Commento) {
+    public ResponseEntity modifyComment(@ApiParam(value = "The id of the Comment that will be modified")
+                                         @PathVariable("id") String id,
+                                         @ApiParam(value = "The Comment with the new information")
+                                         @RequestBody Commento Commento) {
 
-        if (repoC.findById(id) == null) {
+        Optional<Commento> op = repoC.findById(Long.parseLong(id));
+
+        if (!op.isPresent()) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
-        else if (repoC.findById(id) != null) {
+        else{
             repoC.save(Commento);
             return new ResponseEntity(HttpStatus.OK);
-        } else {
-            return new ResponseEntity(HttpStatus.CONFLICT);
         }
-
     }
 
     /**
-     * 
-     * @param id
+     * Delete the comment with the given Id
+     * @param id comment id
      * @return Http response, bad request, created or conflict
      */
 
     @ApiOperation("Delete the Comment with the given ID")
     @DeleteMapping(value = "{id}")
-    public ResponseEntity deleteCommento(@ApiParam(value = "The id of the Comment that will be deleted") @PathVariable("id") long id) {
-        if (repoC.findById(id) == null) {
+    public ResponseEntity deleteCommento(@ApiParam(value = "The id of the Comment that will be deleted")
+                                         @PathVariable("id") String id) {
+
+        Optional<Commento> op = repoC.findById(Long.parseLong(id));
+        
+        if (!op.isPresent()) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
-        else if (repoC.findById(id) != null) {
-            repoC.deleteById(id);
+        else {
+            repoC.deleteById(Long.parseLong(id));
             return new ResponseEntity(HttpStatus.OK);
-        } else {
-            return new ResponseEntity(HttpStatus.CONFLICT);
         }
     }
 
