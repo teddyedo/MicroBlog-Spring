@@ -6,6 +6,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -30,6 +31,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Qualifier("myUserDetailService")
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -50,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers("/Microblog/posts/c*").hasRole("ADMIN")
                 .antMatchers("Microblog/comments/c*").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/", "resources/static/css", "resources/static/fonts", "resources/static/js", "resources/static/vendor").permitAll()
+                .antMatchers("/", "resources/static/css", "resources/static/fonts", "resources/static/js", "resources/static/vendor", "/h2/**").permitAll()
                 .and()
             .formLogin()
                 .loginPage("/Microblog/login")
@@ -61,8 +63,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/Microblog/logout")
                 .logoutSuccessUrl("/Microblog/login")
                 .and()
+                .headers()
+                .frameOptions()
+                .disable()
+                .and()
                 .csrf()
                 .disable();
+
             
 
     }  
