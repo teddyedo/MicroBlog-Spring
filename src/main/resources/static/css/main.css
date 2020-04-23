@@ -495,6 +495,18 @@ iframe {
   font-size: 18px;
 }
 
+.dataOraTesto {
+  color: #333333;
+  font-size: 14px;
+  text-align: end;
+}
+
+.dataOraCommento {
+  color: #333333;
+  font-size: 10px;
+  text-align: end;
+}
+
 .commentoCard{
   color:#333333;
   font-family: Poppins-SemiBold;
@@ -502,5 +514,12 @@ iframe {
 
 .titoloCommento {
   color:#e85a4f;
-  font-family: Poppins-SemiBold;
+  font-family: Poppins-Bold;
+  font-size: 15px;
+}
+
+.utentePost {
+  color:#e85a4f;
+  font-family: Poppins-Bold;
+  font-size: 19px;
 }

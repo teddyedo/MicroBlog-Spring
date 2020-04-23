@@ -61,9 +61,13 @@ and open the template in the editor.
             <div th:each="post: ${listaPost}" class="wrap-login100 p-t-85 p-b-20 p-r-20 m-r-50 m-t-40">
                 <h1 class="titoloCard" th:text="${post.titolo}"></h1>
                 <br />
-                <p class="testoCard" th:text="${post.utente.Username} + ' ' + ${post.dataOra.toString()}">
+                <p class="utentePost" th:text="${post.utente.Username}">
                 </p>
-                <p class="testoCard" th:text="${post.testo}"></p>
+                <p class="testoCard" th:text="${post.testo}">
+                </p>
+                <br>
+                <p class="dataOraTesto pr-3" th:text="${post.dataOra.toString()}">
+                </p>
                 <br /><br />
                 <hr />
                 <br />
@@ -72,12 +76,15 @@ and open the template in the editor.
                 <div class="commenti">
 
                     <div class="commento" th:each="commento : ${commentoRepo.findByPost(post)}">
-                        <h5 class="titoloCommento" th:text="${commento.titolo}"></h5>
-                        <br />
-                        <p class="testoCommento"
-                            th:text="${commento.utente.Username} + ' ' + ${commento.dataOra.toString()}">
+                        <p class="titoloCommento"
+                            th:text="${commento.utente.Username}">
                         </p>
-                        <p class="testoCommento" th:text="${commento.testo}"></p>
+                        <p class="testoCommento" th:text="${commento.testo}">
+                        </p>
+                        <br>
+                        <p class="dataOraCommento pr-3"
+                           th:text="${commento.dataOra.toString()}">
+                        </p>
                         <br />
                         <hr />
                         <br />

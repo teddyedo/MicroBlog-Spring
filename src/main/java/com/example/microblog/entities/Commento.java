@@ -34,10 +34,6 @@ public class Commento extends RepresentationModel<Commento> {
     @Setter
     private String Testo;
 
-    @Basic
-    @Getter
-    @Setter
-    private String Titolo;
 
     @Getter
     @Setter
@@ -52,11 +48,10 @@ public class Commento extends RepresentationModel<Commento> {
     public Commento() {
     }
 
-    public Commento(long id, Date dataOra, String testo, String titolo, Utente utente, Post post) {
+    public Commento(long id, Date dataOra, String testo, Utente utente, Post post) {
         this.Id = id;
         this.DataOra = dataOra;
         this.Testo = testo;
-        this.Titolo = titolo;
         this.utente = utente;
         this.post = post;
     }
