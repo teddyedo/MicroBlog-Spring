@@ -67,7 +67,7 @@ public class restCommento {
             Commento c = op.get();
             c.add(linkTo(methodOn(restCommento.class).getCommento(id)).withSelfRel());
             c.add(linkTo(methodOn(restCommento.class).getComments()).withRel("comments"));
-            c.add(linkTo(methodOn(restUtente.class).getUser(String.valueOf(c.getId()))).withRel("user"));
+            c.add(linkTo(methodOn(restUtente.class).getUser(String.valueOf(c.getUtente().getId()))).withRel("user"));
             c.add(linkTo(methodOn(restPost.class).getPost(String.valueOf(c.getPost().getId()))).withRel("post"));
             return new ResponseEntity<Commento>(c, HttpStatus.OK);
 
