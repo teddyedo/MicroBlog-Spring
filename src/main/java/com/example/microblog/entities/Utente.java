@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serializable;
+
 
 /**
  * 
@@ -16,7 +18,7 @@ import org.springframework.hateoas.RepresentationModel;
  */
 
 @Entity
-public class Utente extends RepresentationModel<Utente> {
+public class Utente extends RepresentationModel<Utente>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +30,7 @@ public class Utente extends RepresentationModel<Utente> {
     @Basic
     @Getter
     @Setter
-    private String Username;
+    private String username;
 
     @Column(nullable = false)
     @Basic
@@ -59,7 +61,7 @@ public class Utente extends RepresentationModel<Utente> {
 
     public Utente(long id, String username, String password, String email, String sALT, String roles) {
         this.Id = id;
-        this.Username = username;
+        this.username = username;
         this.Password = password;
         this.Email = email;
         this.SALT = sALT;

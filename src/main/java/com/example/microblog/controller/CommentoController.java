@@ -59,7 +59,8 @@ public class CommentoController {
 
         c.setDataOra(dataOra);
 
-        Utente u = repoU.findByUsername((String) session.getAttribute("username"));
+        Optional<Utente> opu = repoU.findUtenteByUsername((String) session.getAttribute("username"));
+        Utente u = opu.get();
         c.setUtente(u);
         
         Optional<Post> op = repoP.findById(id);

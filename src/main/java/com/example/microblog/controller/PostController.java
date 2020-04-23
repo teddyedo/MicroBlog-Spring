@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -67,8 +68,10 @@ public class PostController {
         Date dataOra = new Date();
         p.setDataOra(dataOra);
         
-        Utente u = repoU.findByUsername((String) session.getAttribute("username"));
+        Optional<Utente> op = repoU.findUtenteByUsername((String) session.getAttribute("username"));
 
+
+        Utente u = op.get();
         p.setUtente(u);
         repoP.save(p);
 

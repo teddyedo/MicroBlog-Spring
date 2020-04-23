@@ -1,6 +1,7 @@
 package com.example.microblog.controller;
 
 import java.security.SecureRandom;
+import java.util.Optional;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,29 +64,32 @@ public class UserController {
      * Manage login for users
      * @return HTML page - postlist page
      */
-    public String userLogin(String username, String password, HttpServletRequest request) {
+    public void userLogin(String username, String password, HttpServletRequest request) {
 
-        Utente u = repo.findByUsername(username);
+//        Optional<Utente> op = repo.findUtenteByUsername(username);
+//
+//        Utente u = op.get();
+//
+//        Hasher hasher = Hashing.sha256().newHasher();
+//
+//        String passwordEncrypted = u.getPassword();
+//        String salt = u.getSALT();
+//
+//        String newPassword = password + salt;
+//
+//        hasher.putString(newPassword, Charsets.UTF_8);
+//        String sha256 = hasher.hash().toString();
+//
+//        if (sha256.equals(passwordEncrypted)) {
+//            HttpSession session = request.getSession();
+//            session.setAttribute("username", username);
+//
+//            return "redirect:/Microblog/posts";
+//
+//        }else{
+//            return "utenteNonAutorizzato.html";
+//        }
 
-        Hasher hasher = Hashing.sha256().newHasher();
-
-        String passwordEncrypted = u.getPassword();
-        String salt = u.getSALT();
-
-        String newPassword = password + salt;
-
-        hasher.putString(newPassword, Charsets.UTF_8);
-        String sha256 = hasher.hash().toString();
-
-        if (sha256.equals(passwordEncrypted)) {
-            HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-
-            return "redirect:/Microblog/posts";
-
-        }else{
-            return "utenteNonAutorizzato.html";
-        }
     }
 }
 
