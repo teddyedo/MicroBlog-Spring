@@ -33,7 +33,6 @@ and open the template in the editor.
 
 
     <div class="limiter">
-
         <div class="container-login100">
             <div class="wrap-login100 p-t-85 p-b-20">
                 <span class="login100-form-title p-b-30">
@@ -45,13 +44,20 @@ and open the template in the editor.
                     </button>
                 </form>
                 <br />
+                <br>
+                <button type="submit" class="login100-form-btn" id="button5" onclick="location.href = '#firstComment';">
+                    Vedi i post già creati
+                </button>
+                <br>
                 <p style="font-size: 18px; font-family: Poppins-Regular; text-align: center;">
                     oppure
                 </p>
                 <br />
-                <button type="submit" class="login100-form-btn" id="button3" onclick="location.href = '#firstComment';">
-                    Vedi i post già creati
-                </button>
+                <form action="/Microblog" method="get">
+                    <button type="submit" class="login100-form-btn" id="button4">
+                        Torna alla home page
+                    </button>
+                </form>
             </div>
         </div>
 
