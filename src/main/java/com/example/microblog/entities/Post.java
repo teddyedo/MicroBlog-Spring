@@ -21,22 +21,22 @@ public class Post extends RepresentationModel<Post> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private long Id;
+    private long id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Getter
     @Setter
-    private Date DataOra;
+    private Date dataOra;
 
     @Basic
     @Getter
     @Setter
-    private String Testo;
+    private String testo;
 
     @Basic
     @Getter
     @Setter
-    private String Titolo;
+    private String titolo;
 
     @Getter
     @Setter
@@ -47,10 +47,10 @@ public class Post extends RepresentationModel<Post> {
     }
 
     public Post(long id, Date dataOra, String testo, String titolo) {
-        this.Id = id;
-        this.DataOra = dataOra;
-        this.Testo = testo;
-        this.Titolo = titolo;
+        this.id = id;
+        this.dataOra = dataOra;
+        this.testo = testo;
+        this.titolo = titolo;
     }
 
 }

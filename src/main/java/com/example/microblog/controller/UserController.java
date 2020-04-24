@@ -15,6 +15,8 @@ import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -38,33 +40,38 @@ public class UserController {
      */
     public String registration(Utente u) {
         
-        Random random = new SecureRandom();
-                
-        byte[] SaltGeneration = new byte[16];
-        random.nextBytes(SaltGeneration);
-        
-        String salt = DatatypeConverter.printBase64Binary(SaltGeneration);
-        String passwordEncrypted = u.getPassword() + salt;
-        
-        Hasher hasher = Hashing.sha256().newHasher();
-        hasher.putString(passwordEncrypted, Charsets.UTF_8);
-        String sha256 = hasher.hash().toString();
+//        Random random = new SecureRandom();
+//
+//        byte[] SaltGeneration = new byte[16];
+//        random.nextBytes(SaltGeneration);
+//
+//        String salt = DatatypeConverter.printBase64Binary(SaltGeneration);
+//        String passwordEncrypted = u.getPassword() + salt;
+//
+//        Hasher hasher = Hashing.sha256().newHasher();
+//        hasher.putString(passwordEncrypted, Charsets.UTF_8);
+//        String sha256 = hasher.hash().toString();
 
-        u.setPassword(sha256);
-        u.setSALT(salt);
-        u.setRoles("USER");
+        //u.setPassword(sha256);
+        //u.setSalt(salt);
+        u.setRoles("ROLE_USER");
+        u.setSalt("sefgegeag");
+        String plainPsw = u.getPassword();
+
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        u.setPassword(passwordEncoder.encode(plainPsw));
 
         repo.save(u);
         
         return  "redirect:/Microblog";
     }
 
-    @PostMapping(value = "Microblog/loginform")
-    /**
-     * Manage login for users
-     * @return HTML page - postlist page
-     */
-    public void userLogin(String username, String password, HttpServletRequest request) {
+//    @PostMapping(value = "Microblog/loginform")
+//    /**
+//     * Manage login for users
+//     * @return HTML page - postlist page
+//     */
+//    public void userLogin(String username, String password, HttpServletRequest request) {
 
 //        Optional<Utente> op = repo.findUtenteByUsername(username);
 //
@@ -90,6 +97,6 @@ public class UserController {
 //            return "utenteNonAutorizzato.html";
 //        }
 
-    }
+//    }
 }
 

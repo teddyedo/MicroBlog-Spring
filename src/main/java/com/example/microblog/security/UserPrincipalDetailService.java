@@ -2,7 +2,6 @@ package com.example.microblog.security;
 
 import com.example.microblog.entities.Utente;
 import com.example.microblog.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,22 +10,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-/**
- * MyUserDetailService
- */
 @Service
-public class MyUserDetailService implements UserDetailsService {
+public class UserPrincipalDetailService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
-    public UserDetails loadUserByUsername(String username){
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<Utente> user = userRepository.findUtenteByUsername(username);
+        Optional<Utente> op = userRepository.findUtenteByUsername(username);
+        Utente u = op.get();
+        UserPrincipal userPrincipal = new UserPrincipal(u);
 
-        user.orElseThrow(() -> new UsernameNotFoundException("Not found; " + username));
-
-        return new MyUserDetails(user.get());
+        return userPrincipal;
     }
-
 }

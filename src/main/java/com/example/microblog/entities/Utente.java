@@ -8,6 +8,10 @@ import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -24,7 +28,7 @@ public class Utente extends RepresentationModel<Utente>{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private long Id;
+    private long id;
 
     @Column(unique = true, nullable = false)
     @Basic
@@ -36,38 +40,44 @@ public class Utente extends RepresentationModel<Utente>{
     @Basic
     @Getter
     @Setter
-    private String Password;
+    private String password;
 
     @Column(unique = true, nullable = false)
     @Basic
     @Getter
     @Setter
-    private String Email;
+    private String email;
 
     @Column(nullable = false)
     @Basic
     @Getter
     @Setter
-    private String SALT;
+    private String salt;
 
     @Column(nullable = false)
     @Basic
     @Getter
     @Setter
-    private String Roles;
+    private String roles;
 
     public Utente() {
     }
 
-    public Utente(long id, String username, String password, String email, String sALT, String roles) {
-        this.Id = id;
+    public Utente(long id, String username, String password, String email, String salt, String roles) {
+        this.id = id;
         this.username = username;
-        this.Password = password;
-        this.Email = email;
-        this.SALT = sALT;
-        this.Roles = roles;
+        this.password = password;
+        this.email = email;
+        this.salt = salt;
+        this.roles = roles;
     }
 
+    public List<String> getRoleList(){
+        if(this.roles.length() > 0){
+            return Arrays.asList(this.roles.split(","));
+        }
+        return new ArrayList<>();
+    }
 
 
 }

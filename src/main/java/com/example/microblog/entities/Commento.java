@@ -22,17 +22,17 @@ public class Commento extends RepresentationModel<Commento> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private long Id;
+    private long id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Getter
     @Setter
-    private Date DataOra;
+    private Date dataOra;
 
     @Basic
     @Getter
     @Setter
-    private String Testo;
+    private String testo;
 
 
     @Getter
@@ -49,9 +49,9 @@ public class Commento extends RepresentationModel<Commento> {
     }
 
     public Commento(long id, Date dataOra, String testo, Utente utente, Post post) {
-        this.Id = id;
-        this.DataOra = dataOra;
-        this.Testo = testo;
+        this.id = id;
+        this.dataOra = dataOra;
+        this.testo = testo;
         this.utente = utente;
         this.post = post;
     }
