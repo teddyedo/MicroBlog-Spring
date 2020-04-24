@@ -54,7 +54,7 @@ public class UserController {
 
         //u.setPassword(sha256);
         //u.setSalt(salt);
-        u.setRoles("ROLE_USER");
+        u.setRoles("USER");
         u.setSalt("sefgegeag");
         String plainPsw = u.getPassword();
 
