@@ -4,7 +4,8 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>Lista dei post</title>
@@ -39,7 +40,7 @@ and open the template in the editor.
                     Benvenuto nella lista dei post
                 </span>
                 <form action="posts/creapost" method="GET">
-                    <button type="submit" class="login100-form-btn" id="button3">
+                    <button sec:authorize="hasRole('ADMIN')" type="submit" class="login100-form-btn" id="button3">
                         Crea nuovo post
                     </button>
                 </form>
@@ -97,7 +98,7 @@ and open the template in the editor.
                     </div>
                 </div>
                 <form th:action="@{comments/creacomment/} + ${post.id}" method="GET">
-                    <button type="submit" class="login100-form-btn" th:name="${post.id}">
+                    <button sec:authorize="isAuthenticated()" type="submit" class="login100-form-btn" th:name="${post.id}">
                         Commenta
                     </button>
                 </form>

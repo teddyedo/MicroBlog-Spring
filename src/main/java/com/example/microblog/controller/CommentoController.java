@@ -14,6 +14,8 @@ import com.example.microblog.repository.PostRepository;
 import com.example.microblog.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,7 +61,10 @@ public class CommentoController {
 
         c.setDataOra(dataOra);
 
-        Optional<Utente> opu = repoU.findUtenteByUsername((String) session.getAttribute("username"));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalUsername = authentication.getName();
+
+        Optional<Utente> opu = repoU.findUtenteByUsername(currentPrincipalUsername);
         Utente u = opu.get();
         c.setUtente(u);
         

@@ -1,6 +1,8 @@
 package com.example.microblog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.SecurityContext;
 
 import com.example.microblog.entities.Post;
 import com.example.microblog.entities.Utente;
@@ -67,8 +70,12 @@ public class PostController {
         
         Date dataOra = new Date();
         p.setDataOra(dataOra);
-        
-        Optional<Utente> op = repoU.findUtenteByUsername((String) session.getAttribute("username"));
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalUsername = authentication.getName();
+
+
+        Optional<Utente> op = repoU.findUtenteByUsername(currentPrincipalUsername);
 
 
         Utente u = op.get();

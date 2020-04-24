@@ -4,7 +4,8 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
   <title>HomePage</title>
@@ -35,12 +36,12 @@ and open the template in the editor.
           Cosa vuoi fare?
         </span>
         <label></label>
-        <button type="submit" class="login100-form-btn" id="button1" onclick="location.href = 'Microblog/register';">
+        <button sec:authorize="isAnonymous()" type="submit" class="login100-form-btn" id="button1" onclick="location.href = 'Microblog/register';">
           Registrati
         </button>
 
         <label></label>
-        <button type="submit" class="login100-form-btn" id="button2" onclick="location.href = 'Microblog/login';">
+        <button sec:authorize="isAnonymous()" type="submit" class="login100-form-btn" id="button2" onclick="location.href = 'Microblog/login';">
           Login
         </button>
 
@@ -50,7 +51,7 @@ and open the template in the editor.
         </button>
 
         <label></label>
-        <button type="submit" class="login100-form-btn" id="button4" onclick="location.href = '/Microblog/logout';">
+        <button sec:authorize="isAuthenticated()" type="submit" class="login100-form-btn" id="button4" onclick="location.href = '/Microblog/logout';">
           Logout
         </button>
       </div>
