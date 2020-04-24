@@ -1,6 +1,7 @@
 package com.example.microblog.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -50,11 +51,14 @@ public class HomeController {
      * Go to logout page
      * @return HTML page - logout page
      */
-    @RequestMapping("Microblog/logout")
-    public String getLogoutPage() {
-        return "logout.html";
-    }
+    @GetMapping("Microblog/logout")
+    public String logout(){return "logout.html";}
 
-
+    /**
+     * Go to login page
+     * @return HTML page - login page
+     */
+    @GetMapping("/login")
+    public String login(){ return "login.html";}
     
 }

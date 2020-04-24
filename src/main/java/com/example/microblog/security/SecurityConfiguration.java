@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * SecurityConfiguration
@@ -41,10 +42,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2/l**").permitAll()
                 .antMatchers("/Microblog/posts/creapost").hasRole("ADMIN")
                 .antMatchers("/Microblog/posts/newpost").hasRole("ADMIN")
-                .antMatchers("/Microblog/comments/creacomment/{postId}").hasRole("USER")
-                .antMatchers("/Microblog/comments/newcomment/{postId}").hasRole("USER")
+                .antMatchers("/Microblog/comments/creacomment/{postId}").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/Microblog/comments/newcomment/{postId}").hasAnyRole("ADMIN", "USER")
                 .and()
-                .httpBasic();
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/Microblog");
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
