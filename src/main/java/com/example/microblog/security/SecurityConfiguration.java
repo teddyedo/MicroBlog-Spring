@@ -1,13 +1,18 @@
 package com.example.microblog.security;
 
+import com.example.microblog.jwt.JwtAuthenticationFilter;
+import com.example.microblog.jwt.JwtAuthorizationFilter;
+import com.example.microblog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -18,41 +23,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration {
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     private UserPrincipalDetailService userPrincipalDetailService;
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth){
-        auth.authenticationProvider(authenticationProvider());
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-        http
-                .authorizeRequests()
-                .antMatchers("/Microblog/register").permitAll()
-                .antMatchers("/Microblog/registration").permitAll()
-                .antMatchers("/Microblog/login").permitAll()
-                .antMatchers("/Microblog/logout").permitAll()
-                .antMatchers("/Microblog/posts").permitAll()
-                .antMatchers("/h2").permitAll()
-                .antMatchers("/h2/l**").permitAll()
-                .antMatchers("/Microblog/posts/creapost").hasRole("ADMIN")
-                .antMatchers("/Microblog/posts/newpost").hasRole("ADMIN")
-                .antMatchers("/Microblog/comments/creacomment/{postId}").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/Microblog/comments/newcomment/{postId}").hasAnyRole("ADMIN", "USER")
-                .and()
-                .formLogin()
-                .loginPage("/login").permitAll()
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/Microblog");
-
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
-    }
 
     @Bean
     DaoAuthenticationProvider authenticationProvider() {
@@ -66,5 +43,71 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    //Security configuration for APIs
+    @Order(1)
+    @Configuration
+    public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter{
+
+
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) {
+            auth.authenticationProvider(authenticationProvider());
+        }
+
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+
+            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager());
+            jwtAuthenticationFilter.setFilterProcessesUrl("/Microblog/api/login");
+
+            http.
+                    antMatcher("/Microblog/api/**")
+                    .csrf().disable()
+                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
+                    .addFilter(jwtAuthenticationFilter)
+                    .addFilter(new JwtAuthorizationFilter(authenticationManager(), userRepository))
+                    .authorizeRequests()
+                    .antMatchers("/Microblog/api/users").hasRole("ADMIN")
+                    .antMatchers("/Microblog/api/**").permitAll()
+                    .antMatchers("/login").permitAll();
+
+
+        }
+    }
+
+    //Security configuration for MVC application
+    @Order(2)
+    @Configuration
+    public class FormLoginConfiguration extends WebSecurityConfigurerAdapter {
+
+
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) {
+            auth.authenticationProvider(authenticationProvider());
+        }
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+
+            http
+                    .authorizeRequests()
+                    .antMatchers("/Microblog/comments/**").hasAnyRole("ADMIN", "USER")
+                    .antMatchers("/Microblog/posts/**").hasRole("ADMIN")
+                    .antMatchers("/Microblog/**").permitAll()
+                    .antMatchers("/h2").permitAll()
+                    .antMatchers("/h2/l**").permitAll()
+                    .and()
+                    .formLogin()
+                    .loginPage("/login").permitAll()
+                    .and()
+                    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/Microblog");
+
+            http.csrf().disable();
+            http.headers().frameOptions().disable();
+        }
     }
 }

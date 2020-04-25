@@ -39,21 +39,7 @@ public class UserController {
      * @return HTML page - homepage
      */
     public String registration(Utente u) {
-        
-//        Random random = new SecureRandom();
-//
-//        byte[] SaltGeneration = new byte[16];
-//        random.nextBytes(SaltGeneration);
-//
-//        String salt = DatatypeConverter.printBase64Binary(SaltGeneration);
-//        String passwordEncrypted = u.getPassword() + salt;
-//
-//        Hasher hasher = Hashing.sha256().newHasher();
-//        hasher.putString(passwordEncrypted, Charsets.UTF_8);
-//        String sha256 = hasher.hash().toString();
 
-        //u.setPassword(sha256);
-        //u.setSalt(salt);
         u.setRoles("USER");
         u.setSalt("sefgegeag");
         String plainPsw = u.getPassword();
@@ -66,37 +52,6 @@ public class UserController {
         return  "redirect:/Microblog";
     }
 
-//    @PostMapping(value = "Microblog/loginform")
-//    /**
-//     * Manage login for users
-//     * @return HTML page - postlist page
-//     */
-//    public void userLogin(String username, String password, HttpServletRequest request) {
 
-//        Optional<Utente> op = repo.findUtenteByUsername(username);
-//
-//        Utente u = op.get();
-//
-//        Hasher hasher = Hashing.sha256().newHasher();
-//
-//        String passwordEncrypted = u.getPassword();
-//        String salt = u.getSALT();
-//
-//        String newPassword = password + salt;
-//
-//        hasher.putString(newPassword, Charsets.UTF_8);
-//        String sha256 = hasher.hash().toString();
-//
-//        if (sha256.equals(passwordEncrypted)) {
-//            HttpSession session = request.getSession();
-//            session.setAttribute("username", username);
-//
-//            return "redirect:/Microblog/posts";
-//
-//        }else{
-//            return "utenteNonAutorizzato.html";
-//        }
-
-//    }
 }
 
