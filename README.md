@@ -4,7 +4,7 @@
 !["IDE"](https://img.shields.io/badge/IDE-INTELLIJ-blue?style=for-the-badge&logo=intellij-idea)
 !["Language"](https://img.shields.io/badge/LANGUAGE-JAVA-orange?style=for-the-badge)
 
-This is the same project of my "MicroBlog" repo, but I decided to implement it with Spring Boot
+This is the same project of my ```MicroBlog``` repo, but I decided to implement it with Spring Boot
 
 ## Swagger Documentation
 
@@ -47,3 +47,15 @@ Users can ONLY comments posts, Admin can both comments and creates posts.
 #### Sources
 Some of the posts are taken from the [```Focus Facebook pages```](https://www.facebook.com/focus.it/).
  Also comments are real, but I don't report the real name of the users.
+ 
+#### Security 
+This application implements two security level: 
+
+- **FormBased authentication**,used to handle sessions and permissions inside the web app.
+    - login at ```/login```; 
+    - logout at ```/logout```.
+- **JWT authentication**, used to handle security and permissions with some restAPI, used by 
+[my Flutter Application](https://github.com/teddyedo/Microblog-mobile).
+To request JWT auth, the path is ```/Microblog/api/login```. For more information about the format of the restAPI, 
+visit Swagger documentation. The ```logout``` is not implemented, cause JWT handle **STATELESS** connections.
+
