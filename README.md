@@ -42,6 +42,8 @@ listed the users already created, with username and password.
 |Agay1994|user7|USER|
 |User|usertest|USER|
 
+Users can ONLY comments posts, Admin can both comments and creates posts.
+
 #### Sources
 Some of the posts are taken from the [```Focus Facebook pages```](https://www.facebook.com/focus.it/).
  Also comments are real, but I don't report the real name of the users.
