@@ -36,9 +36,11 @@ and open the template in the editor.
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-t-85 p-b-20">
-                <span class="login100-form-title p-b-30">
-                    Benvenuto nella lista dei post
-                </span>
+                <p sec:authorize="isAnonymous()" class="login100-form-title p-b-30">
+                Benvenuto nella lista dei post
+                </p>
+                <p sec:authorize="isAuthenticated()" th:text="'Benvenuto nella lista dei post, ' + ${#authentication.name}" class="login100-form-title p-b-30">
+                </p>
                 <form action="posts/creapost" method="GET">
                     <button sec:authorize="hasRole('ADMIN')" type="submit" class="login100-form-btn" id="button3">
                         Crea nuovo post
