@@ -60,4 +60,4 @@ To request JWT auth, the path is ```/Microblog/api/login```. For more informatio
 visit Swagger documentation. The ```logout``` is not implemented, cause JWT handle **STATELESS** connections.
 
 ### ORM Diagram
-![ORM Diagram]()
+![ORM Diagram](https://raw.githubusercontent.com/teddyedo/MicroBlog-Spring/master/img/Microblog.png)
