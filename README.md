@@ -59,3 +59,5 @@ This application implements two security level:
 To request JWT auth, the path is ```/Microblog/api/login```. For more information about the format of the restAPI, 
 visit Swagger documentation. The ```logout``` is not implemented, cause JWT handle **STATELESS** connections.
 
+### ORM Diagram
+![ORM Diagram]()
