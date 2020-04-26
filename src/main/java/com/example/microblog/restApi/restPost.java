@@ -151,10 +151,7 @@ public class restPost {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
         else{
-            List<Commento> commentList = repoC.findByPost(op.get());
-            for (Commento c : commentList){
-                restC.deleteCommento(String.valueOf(c.getId()));
-            }
+
             repoP.deleteById(Long.parseLong(id));
             return new ResponseEntity(HttpStatus.OK);
         }

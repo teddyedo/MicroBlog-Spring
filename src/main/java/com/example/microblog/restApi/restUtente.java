@@ -158,15 +158,6 @@ public class restUtente {
 
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         } else {
-            List<Post> postList = repoP.findByUtente(op.get());
-            for (Post p : postList) {
-                restP.deletePost(String.valueOf(p.getId()));
-            }
-
-            List<Commento> commentList = repoC.findByUtente(op.get());
-            for (Commento c : commentList) {
-                restC.deleteCommento(String.valueOf(c.getId()));
-            }
 
             repoU.deleteById(Long.parseLong(id));
             return new ResponseEntity(HttpStatus.OK);
