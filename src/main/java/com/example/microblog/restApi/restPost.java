@@ -57,6 +57,11 @@ public class restPost {
     public ResponseEntity<List<Post>> getPosts() {
 
         List<Post> list = repoP.findAll();
+        for (Post p : list){
+            p.add(linkTo(methodOn(restPost.class).getPost(String.valueOf(p.getId()))).withSelfRel());
+            p.add(linkTo(methodOn(restPost.class).getPosts()).withRel("posts"));
+            p.add(linkTo(methodOn(restUtente.class).getUser((String.valueOf(p.getUtente().getId())))).withRel("user"));
+        }
         return new ResponseEntity<List<Post>>(list, HttpStatus.OK);
     }
 

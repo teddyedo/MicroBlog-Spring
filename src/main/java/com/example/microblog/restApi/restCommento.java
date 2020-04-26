@@ -49,6 +49,12 @@ public class restCommento {
     public ResponseEntity<List<Commento>> getComments() {
 
         List<Commento> list = repoC.findAll();
+        for (Commento c : list){
+            c.add(linkTo(methodOn(restCommento.class).getCommento(String.valueOf(c.getId()))).withSelfRel());
+            c.add(linkTo(methodOn(restCommento.class).getComments()).withRel("comments"));
+            c.add(linkTo(methodOn(restUtente.class).getUser(String.valueOf(c.getUtente().getId()))).withRel("user"));
+            c.add(linkTo(methodOn(restPost.class).getPost(String.valueOf(c.getPost().getId()))).withRel("post"));
+        }
         return new ResponseEntity<List<Commento>>(list, HttpStatus.OK);
     }
 

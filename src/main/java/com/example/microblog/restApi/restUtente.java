@@ -65,6 +65,11 @@ public class restUtente {
     public ResponseEntity<List<Utente>> getUsers() {
 
         List<Utente> list = repoU.findAll();
+        for(Utente u : list){
+            u.add(linkTo(methodOn(restUtente.class).getUser(String.valueOf(u.getId()))).withSelfRel());
+            u.add(linkTo(methodOn(restUtente.class).getUsers()).withRel("users"));
+            u.add(linkTo(methodOn(restPost.class).getPostsByUserId(String.valueOf(u.getId()))).withRel("posts"));
+        }
         return new ResponseEntity<List<Utente>>(list, HttpStatus.OK);
     }
 

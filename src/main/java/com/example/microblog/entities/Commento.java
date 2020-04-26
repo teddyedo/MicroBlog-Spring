@@ -37,12 +37,12 @@ public class Commento extends RepresentationModel<Commento> {
 
     @Getter
     @Setter
-    @ManyToOne(targetEntity = Utente.class)
+    @ManyToOne(targetEntity = Utente.class, cascade = CascadeType.ALL)
     private Utente utente;
 
     @Getter
     @Setter
-    @ManyToOne(targetEntity = Post.class)
+    @ManyToOne(targetEntity = Post.class, cascade = CascadeType.ALL)
     private Post post;
 
     public Commento() {

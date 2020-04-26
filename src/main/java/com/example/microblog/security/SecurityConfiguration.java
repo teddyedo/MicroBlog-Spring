@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -72,10 +73,15 @@ public class SecurityConfiguration {
                     .addFilter(new JwtAuthorizationFilter(authenticationManager(), userRepository))
                     .authorizeRequests()
                     .antMatchers("/Microblog/api/users").hasRole("ADMIN")
-                    .antMatchers("/Microblog/api/**").permitAll()
+                    .antMatchers(HttpMethod.POST, "/Microblog/api/posts").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.PUT, "/Microblog/api/posts").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.DELETE, "/Microblog/api/posts").hasRole("ADMIN")
+                    .antMatchers("/Microblog/api/posts").permitAll()
+                    .antMatchers(HttpMethod.POST, "/Microblog/api/comments").authenticated()
+                    .antMatchers(HttpMethod.PUT, "/Microblog/api/comments").authenticated()
+                    .antMatchers(HttpMethod.DELETE, "/Microblog/api/comments").authenticated()
+                    .antMatchers("/Microblog/api/comments").permitAll()
                     .antMatchers("/login").permitAll();
-
-
         }
     }
 

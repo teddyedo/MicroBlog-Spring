@@ -12,11 +12,11 @@ Too see the API's documentation with Swagger, download and launch the repo and v
 
 ```http://localhost:8080/swagger-ui.html```
 
-#### Client
+### Client
 Visit the repository for my mobile client for this project made with flutter!
 [Mobile client](https://github.com/teddyedo/Microblog-mobile).
 
-#### JavaDoc
+### JavaDoc
 If you want to see the javaDoc, please check the ```javaDoc``` folder (the link will be implemented soon).
 
 ## Quick Guide
@@ -44,11 +44,11 @@ listed the users already created, with username and password.
 
 Users can ONLY comments posts, Admin can both comments and creates posts.
 
-#### Sources
+### Sources
 Some of the posts are taken from the [```Focus Facebook pages```](https://www.facebook.com/focus.it/).
  Also comments are real, but I don't report the real name of the users.
  
-#### Security 
+### Security 
 This application implements two security level: 
 
 - **FormBased authentication**,used to handle sessions and permissions inside the web app.
