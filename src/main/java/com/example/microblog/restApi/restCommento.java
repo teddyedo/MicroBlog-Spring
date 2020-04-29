@@ -1,12 +1,17 @@
 package com.example.microblog.restApi;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import com.example.microblog.entities.Commento;
+import com.example.microblog.entities.Post;
+import com.example.microblog.entities.Utente;
 import com.example.microblog.repository.CommentoRepository;
 
+import com.example.microblog.repository.PostRepository;
+import com.example.microblog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +43,12 @@ public class restCommento {
 
     @Autowired
     CommentoRepository repoC;
+
+    @Autowired
+    UserRepository repoU;
+
+    @Autowired
+    PostRepository repoP;
 
     /**
      * Get the list of all comments
@@ -97,6 +108,12 @@ public class restCommento {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         } else {
 
+            Optional<Utente> op = repoU.findUtenteByUsername(commento.getUtente().getUsername());
+            Utente u = op.get();
+            commento.setDataOra(new Date());
+            Optional<Post> opPost = repoP.findById(commento.getPost().getId());
+            commento.setPost(opPost.get());
+            commento.setUtente(u);
             repoC.save(commento);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }

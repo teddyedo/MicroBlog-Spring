@@ -15,6 +15,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -104,12 +105,18 @@ public class restUtente {
 
     @ApiOperation("Create a new User")
     @PostMapping
-    public ResponseEntity createUser(@ApiParam(value = "The User that will be created") Utente user) {
+    public ResponseEntity createUser(@ApiParam(value = "The User that will be created") @RequestBody Utente user) {
 
         if (user == null) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         } else {
 
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+            user.setRoles("USER");
+            String pw = user.getPassword();
+            user.setPassword(passwordEncoder.encode(pw));
+            user.setSalt("ahnsg<sdfbtfgdgsn");
             repoU.save(user);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
@@ -159,7 +166,16 @@ public class restUtente {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         } else {
 
+            Utente u = op.get();
+            List<Post> posts = repoP.findByUtente(u);
+            for (Post p : posts) {
+
+                repoC.deleteByPost(p);
+            }
+
+            repoP.deleteByUtente(u);
             repoU.deleteById(Long.parseLong(id));
+
             return new ResponseEntity(HttpStatus.OK);
         }
     }

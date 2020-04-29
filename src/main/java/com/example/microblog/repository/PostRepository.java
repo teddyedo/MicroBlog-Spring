@@ -14,5 +14,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findByUtente(Utente u);
+
+    void deleteByUtente(Utente u);
 }
 

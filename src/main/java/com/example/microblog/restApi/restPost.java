@@ -1,5 +1,6 @@
 package com.example.microblog.restApi;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
@@ -104,6 +105,10 @@ public class restPost {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         } else {
 
+            Optional<Utente> op = repoU.findUtenteByUsername(post.getUtente().getUsername());
+            Utente u = op.get();
+            post.setDataOra(new Date());
+            post.setUtente(u);
             repoP.save(post);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
@@ -151,7 +156,7 @@ public class restPost {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
         else{
-
+            repoC.deleteByPost(op.get());
             repoP.deleteById(Long.parseLong(id));
             return new ResponseEntity(HttpStatus.OK);
         }

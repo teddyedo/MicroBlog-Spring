@@ -3,6 +3,7 @@ package com.example.microblog.security;
 import com.example.microblog.jwt.JwtAuthenticationFilter;
 import com.example.microblog.jwt.JwtAuthorizationFilter;
 import com.example.microblog.repository.UserRepository;
+import com.sun.research.ws.wadl.HTTPMethods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -72,7 +73,10 @@ public class SecurityConfiguration {
                     .addFilter(jwtAuthenticationFilter)
                     .addFilter(new JwtAuthorizationFilter(authenticationManager(), userRepository))
                     .authorizeRequests()
-                    .antMatchers("/Microblog/api/users").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.GET, "/Microblog/api/users").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.PUT, "/Microblog/api/users").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.DELETE, "/Microblog/api/users").hasRole("ADMIN")
+                    .antMatchers("/Microblog/api/users").permitAll()
                     .antMatchers(HttpMethod.POST, "/Microblog/api/posts").hasRole("ADMIN")
                     .antMatchers(HttpMethod.PUT, "/Microblog/api/posts").hasRole("ADMIN")
                     .antMatchers(HttpMethod.DELETE, "/Microblog/api/posts").hasRole("ADMIN")
@@ -102,7 +106,8 @@ public class SecurityConfiguration {
             http
                     .authorizeRequests()
                     .antMatchers("/Microblog/comments/**").hasAnyRole("ADMIN", "USER")
-                    .antMatchers("/Microblog/posts/**").hasRole("ADMIN")
+                    .antMatchers("/Microblog/posts/c*").hasRole("ADMIN")
+                    .antMatchers("/Microblog/posts/n*").hasRole("ADMIN")
                     .antMatchers("/Microblog/**").permitAll()
                     .antMatchers("/h2").permitAll()
                     .antMatchers("/h2/l**").permitAll()

@@ -40,7 +40,7 @@ public class Post extends RepresentationModel<Post> {
 
     @Getter
     @Setter
-    @ManyToOne(targetEntity = Utente.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Utente.class)
     private Utente utente;
 
     public Post() {
