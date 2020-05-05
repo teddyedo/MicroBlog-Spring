@@ -41,7 +41,7 @@ public class Post extends RepresentationModel<Post> {
     @Getter
     @Setter
     @ManyToOne(targetEntity = User.class)
-    private User utente;
+    private User user;
 
     public Post() {
     }

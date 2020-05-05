@@ -8,10 +8,10 @@ import javax.servlet.http.HttpSession;
 import com.example.microblog.entities.Comment;
 import com.example.microblog.entities.Post;
 import com.example.microblog.entities.User;
-import com.example.microblog.repository.CommentoRepository;
-import com.example.microblog.repository.PostRepository;
-import com.example.microblog.repository.UserRepository;
 
+import com.example.microblog.springDataRest.RepoComment;
+import com.example.microblog.springDataRest.RepoPost;
+import com.example.microblog.springDataRest.RepoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,13 +28,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CommentoController {
 
     @Autowired
-    UserRepository repoU;
+    RepoUser repoU;
 
     @Autowired
-    PostRepository repoP;
+    RepoPost repoP;
 
     @Autowired
-    CommentoRepository repoC;
+    RepoComment repoC;
 
     /**
      * Return the page for creating comment
@@ -63,9 +63,9 @@ public class CommentoController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalUsername = authentication.getName();
 
-        Optional<User> opu = repoU.findUtenteByUsername(currentPrincipalUsername);
+        Optional<User> opu = repoU.findByUsername(currentPrincipalUsername);
         User u = opu.get();
-        c.setUtente(u);
+        c.setUser(u);
         
         Optional<Post> op = repoP.findById(id);
         Post p = op.get();

@@ -1,5 +1,8 @@
 package com.example.microblog.controller;
 
+import com.example.microblog.springDataRest.RepoComment;
+import com.example.microblog.springDataRest.RepoPost;
+import com.example.microblog.springDataRest.RepoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,9 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import com.example.microblog.entities.Post;
 import com.example.microblog.entities.User;
-import com.example.microblog.repository.CommentoRepository;
-import com.example.microblog.repository.PostRepository;
-import com.example.microblog.repository.UserRepository;
+
 
 /**
  * PostController
@@ -27,13 +28,13 @@ import com.example.microblog.repository.UserRepository;
 public class PostController {
 
     @Autowired
-    PostRepository repoP;
+    RepoPost repoP;
 
     @Autowired
-    CommentoRepository repoC;
+    RepoComment repoC;
 
     @Autowired
-    UserRepository repoU;
+    RepoUser repoU;
 
     @RequestMapping("Microblog/posts")
     /**
@@ -74,11 +75,11 @@ public class PostController {
         String currentPrincipalUsername = authentication.getName();
 
 
-        Optional<User> op = repoU.findUtenteByUsername(currentPrincipalUsername);
+        Optional<User> op = repoU.findByUsername(currentPrincipalUsername);
 
 
         User u = op.get();
-        p.setUtente(u);
+        p.setUser(u);
         repoP.save(p);
 
         return "redirect:/Microblog/posts";

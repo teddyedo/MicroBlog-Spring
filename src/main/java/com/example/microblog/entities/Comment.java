@@ -38,7 +38,7 @@ public class Comment extends RepresentationModel<Comment> {
     @Getter
     @Setter
     @ManyToOne(targetEntity = User.class)
-    private User utente;
+    private User user;
 
     @Getter
     @Setter
@@ -52,7 +52,7 @@ public class Comment extends RepresentationModel<Comment> {
         this.id = id;
         this.dataOra = dataOra;
         this.testo = testo;
-        this.utente = utente;
+        this.user = utente;
         this.post = post;
     }
 

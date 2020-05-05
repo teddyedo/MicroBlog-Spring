@@ -1,8 +1,8 @@
 package com.example.microblog.controller;
 
 import com.example.microblog.entities.User;
-import com.example.microblog.repository.UserRepository;
 
+import com.example.microblog.springDataRest.RepoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     @Autowired
-    UserRepository repo;
+    RepoUser repo;
     
 
     @PostMapping(value="Microblog/registration")

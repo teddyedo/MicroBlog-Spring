@@ -3,8 +3,8 @@ package com.example.microblog.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.microblog.entities.User;
-import com.example.microblog.repository.UserRepository;
 import com.example.microblog.security.UserPrincipal;
+import com.example.microblog.springDataRest.RepoUser;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,9 +20,9 @@ import java.util.Optional;
 
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
-    private UserRepository userRepository;
+    private RepoUser userRepository;
 
-    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UserRepository userRepository) {
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, RepoUser userRepository) {
         super(authenticationManager);
         this.userRepository = userRepository;
     }
@@ -60,7 +60,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             //Search in the DB if there is a user by token subject (username)
             //if exists, grab user details and create spring auth token using username, password and roles
             if (username != null) {
-                Optional<User> op = userRepository.findUtenteByUsername(username);
+                Optional<User> op = userRepository.findByUsername(username);
                 User utente = op.get();
                 UserPrincipal principal = new UserPrincipal(utente);
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null, principal.getAuthorities());

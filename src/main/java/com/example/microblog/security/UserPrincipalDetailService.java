@@ -1,7 +1,7 @@
 package com.example.microblog.security;
 
 import com.example.microblog.entities.User;
-import com.example.microblog.repository.UserRepository;
+import com.example.microblog.springDataRest.RepoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,12 +14,12 @@ import java.util.Optional;
 public class UserPrincipalDetailService implements UserDetailsService {
 
     @Autowired
-    UserRepository userRepository;
+    RepoUser userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<User> op = userRepository.findUtenteByUsername(username);
+        Optional<User> op = userRepository.findByUsername(username);
         User u = op.get();
         UserPrincipal userPrincipal = new UserPrincipal(u);
 
