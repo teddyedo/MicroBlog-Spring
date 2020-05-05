@@ -1,6 +1,6 @@
 package com.example.microblog.repository;
 
-import com.example.microblog.entities.Utente;
+import com.example.microblog.entities.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,10 +9,10 @@ import java.util.Optional;
 /**
  * UserRepository
  */
-public interface UserRepository extends JpaRepository<Utente, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 
-   Optional<Utente> findUtenteByUsername(String Username);
+   Optional<User> findUtenteByUsername(String Username);
 
 }
 

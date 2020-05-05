@@ -11,10 +11,9 @@ import java.util.Date;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.core.SecurityContext;
 
 import com.example.microblog.entities.Post;
-import com.example.microblog.entities.Utente;
+import com.example.microblog.entities.User;
 import com.example.microblog.repository.CommentoRepository;
 import com.example.microblog.repository.PostRepository;
 import com.example.microblog.repository.UserRepository;
@@ -75,10 +74,10 @@ public class PostController {
         String currentPrincipalUsername = authentication.getName();
 
 
-        Optional<Utente> op = repoU.findUtenteByUsername(currentPrincipalUsername);
+        Optional<User> op = repoU.findUtenteByUsername(currentPrincipalUsername);
 
 
-        Utente u = op.get();
+        User u = op.get();
         p.setUtente(u);
         repoP.save(p);
 

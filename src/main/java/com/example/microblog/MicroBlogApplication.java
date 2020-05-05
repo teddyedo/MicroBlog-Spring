@@ -11,10 +11,10 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+//import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@EnableSwagger2
+//@EnableSwagger2
 @EnableJpaRepositories
 public class MicroBlogApplication {
 
@@ -30,7 +30,7 @@ public class MicroBlogApplication {
 //            @Override
 //            protected void postProcessContext(Context context) {
 //                SecurityConstraint securityConstraint = new SecurityConstraint();
-//                securityConstraint.setUserConstraint("COONFIDENTIAL");
+//                securityConstraint.setUserConstraint("CONFIDENTIAL");
 //                SecurityCollection collection = new SecurityCollection();
 //                collection.addPattern("/*");
 //                securityConstraint.addCollection(collection);

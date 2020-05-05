@@ -2,20 +2,20 @@ package com.example.microblog.repository;
 
 import java.util.List;
 
-import com.example.microblog.entities.Commento;
+import com.example.microblog.entities.Comment;
 import com.example.microblog.entities.Post;
 
-import com.example.microblog.entities.Utente;
+import com.example.microblog.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * CommentoRepository
  */
-public interface CommentoRepository extends JpaRepository<Commento, Long> {
+public interface CommentoRepository extends JpaRepository<Comment, Long> {
 
-    List<Commento> findByPost(Post p);
+    List<Comment> findByPost(Post p);
 
-    List<Commento> findByUtente(Utente u);
+    List<Comment> findByUtente(User u);
 
     void deleteByPost(Post p);
 }

@@ -1,6 +1,7 @@
 package com.example.microblog.entities;
 
 import java.util.Date;
+
 import javax.persistence.*;
 
 import lombok.Getter;
@@ -15,7 +16,7 @@ import org.springframework.hateoas.RepresentationModel;
  */
 
 @Entity
-public class Post extends RepresentationModel<Post> {
+public class Comment extends RepresentationModel<Comment> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,24 +34,28 @@ public class Post extends RepresentationModel<Post> {
     @Setter
     private String testo;
 
-    @Basic
-    @Getter
-    @Setter
-    private String titolo;
 
     @Getter
     @Setter
     @ManyToOne(targetEntity = User.class)
     private User utente;
 
-    public Post() {
+    @Getter
+    @Setter
+    @ManyToOne(targetEntity = Post.class)
+    private Post post;
+
+    public Comment() {
     }
 
-    public Post(long id, Date dataOra, String testo, String titolo) {
+    public Comment(long id, Date dataOra, String testo, User utente, Post post) {
         this.id = id;
         this.dataOra = dataOra;
         this.testo = testo;
-        this.titolo = titolo;
+        this.utente = utente;
+        this.post = post;
     }
+
+	
 
 }
