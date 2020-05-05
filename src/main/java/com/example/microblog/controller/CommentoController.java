@@ -3,12 +3,11 @@ package com.example.microblog.controller;
 import java.util.Date;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.example.microblog.entities.Commento;
+import com.example.microblog.entities.Comment;
 import com.example.microblog.entities.Post;
-import com.example.microblog.entities.Utente;
+import com.example.microblog.entities.User;
 import com.example.microblog.repository.CommentoRepository;
 import com.example.microblog.repository.PostRepository;
 import com.example.microblog.repository.UserRepository;
@@ -55,7 +54,7 @@ public class CommentoController {
      * @return HTML page - postList
      */
     @RequestMapping("Microblog/comments/newcomment/{postId}")
-    public String publicCommento(@PathVariable(value = "postId") long id, Commento c, HttpSession session) {
+    public String publicCommento(@PathVariable(value = "postId") long id, Comment c, HttpSession session) {
 
         Date dataOra = new Date();
 
@@ -64,8 +63,8 @@ public class CommentoController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalUsername = authentication.getName();
 
-        Optional<Utente> opu = repoU.findUtenteByUsername(currentPrincipalUsername);
-        Utente u = opu.get();
+        Optional<User> opu = repoU.findUtenteByUsername(currentPrincipalUsername);
+        User u = opu.get();
         c.setUtente(u);
         
         Optional<Post> op = repoP.findById(id);

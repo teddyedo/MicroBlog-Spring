@@ -1,18 +1,7 @@
 package com.example.microblog.controller;
 
-import java.security.SecureRandom;
-import java.util.Optional;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.xml.bind.DatatypeConverter;
-
-import com.example.microblog.entities.Utente;
+import com.example.microblog.entities.User;
 import com.example.microblog.repository.UserRepository;
-import com.google.common.base.Charsets;
-import com.google.common.hash.Hasher;
-import com.google.common.hash.Hashing;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -38,7 +27,7 @@ public class UserController {
      * Register a new User
      * @return HTML page - homepage
      */
-    public String registration(Utente u) {
+    public String registration(User u) {
 
         u.setRoles("USER");
         u.setSalt("sefgegeag");

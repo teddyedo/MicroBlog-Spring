@@ -1,6 +1,6 @@
 package com.example.microblog.security;
 
-import com.example.microblog.entities.Utente;
+import com.example.microblog.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,9 +11,9 @@ import java.util.List;
 
 public class UserPrincipal implements UserDetails {
 
-    private Utente utente;
+    private User utente;
 
-    public UserPrincipal(Utente utente) {
+    public UserPrincipal(User utente) {
         this.utente = utente;
     }
 

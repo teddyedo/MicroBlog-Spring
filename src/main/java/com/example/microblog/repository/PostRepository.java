@@ -2,9 +2,8 @@ package com.example.microblog.repository;
 
 import com.example.microblog.entities.Post;
 
-import com.example.microblog.entities.Utente;
+import com.example.microblog.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -13,8 +12,8 @@ import java.util.List;
  */
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    List<Post> findByUtente(Utente u);
+    List<Post> findByUtente(User u);
 
-    void deleteByUtente(Utente u);
+    void deleteByUtente(User u);
 }
 
