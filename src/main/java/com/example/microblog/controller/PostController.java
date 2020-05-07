@@ -1,8 +1,8 @@
 package com.example.microblog.controller;
 
-import com.example.microblog.springDataRest.RepoComment;
-import com.example.microblog.springDataRest.RepoPost;
-import com.example.microblog.springDataRest.RepoUser;
+import com.example.microblog.repository.RepoComment;
+import com.example.microblog.repository.RepoPost;
+import com.example.microblog.repository.RepoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

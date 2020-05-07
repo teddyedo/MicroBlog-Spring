@@ -2,8 +2,7 @@ package com.example.microblog.security;
 
 import com.example.microblog.jwt.JwtAuthenticationFilter;
 import com.example.microblog.jwt.JwtAuthorizationFilter;
-import com.example.microblog.springDataRest.RepoUser;
-import com.sun.research.ws.wadl.HTTPMethods;
+import com.example.microblog.repository.RepoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
