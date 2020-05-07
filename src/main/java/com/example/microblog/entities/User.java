@@ -3,9 +3,13 @@ package com.example.microblog.entities;
 
 import javax.persistence.*;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +24,7 @@ import java.util.List;
  */
 
 @Entity
+@ApiIgnore
 public class User extends RepresentationModel<User>{
 
     @Id

@@ -1,7 +1,7 @@
 package com.example.microblog.security;
 
 import com.example.microblog.entities.User;
-import com.example.microblog.springDataRest.RepoUser;
+import com.example.microblog.repository.RepoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

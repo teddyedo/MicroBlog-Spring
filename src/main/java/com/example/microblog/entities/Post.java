@@ -6,6 +6,7 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * 
@@ -13,7 +14,7 @@ import org.springframework.hateoas.RepresentationModel;
  * @version 1.0.0 - 14/03/2020
  * 
  */
-
+@ApiIgnore
 @Entity
 public class Post extends RepresentationModel<Post> {
 

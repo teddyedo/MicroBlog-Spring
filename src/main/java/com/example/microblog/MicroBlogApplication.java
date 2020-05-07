@@ -9,11 +9,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 
 @SpringBootApplication
 @EnableJpaRepositories
+@EnableSwagger2WebMvc
+@Import(SpringDataRestConfiguration.class)
 public class MicroBlogApplication {
 
     public static void main(String[] args) {

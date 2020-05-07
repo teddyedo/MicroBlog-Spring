@@ -2,7 +2,7 @@ package com.example.microblog.controller;
 
 import com.example.microblog.entities.User;
 
-import com.example.microblog.springDataRest.RepoUser;
+import com.example.microblog.repository.RepoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;

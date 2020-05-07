@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.microblog.entities.User;
 import com.example.microblog.security.UserPrincipal;
-import com.example.microblog.springDataRest.RepoUser;
+import com.example.microblog.repository.RepoUser;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

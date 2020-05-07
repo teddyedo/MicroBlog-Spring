@@ -7,6 +7,7 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * 
@@ -16,6 +17,7 @@ import org.springframework.hateoas.RepresentationModel;
  */
 
 @Entity
+@ApiIgnore
 public class Comment extends RepresentationModel<Comment> {
 
     @Id
