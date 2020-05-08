@@ -1,4 +1,4 @@
-package com.example.microblog.repository;
+package com.example.microblog.restRepository;
 
 import com.example.microblog.entities.Comment;
 import com.example.microblog.entities.Post;

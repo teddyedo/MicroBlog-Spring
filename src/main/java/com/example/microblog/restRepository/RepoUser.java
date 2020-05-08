@@ -1,4 +1,4 @@
-package com.example.microblog.repository;
+package com.example.microblog.restRepository;
 
 import com.example.microblog.entities.User;
 import io.swagger.annotations.Api;

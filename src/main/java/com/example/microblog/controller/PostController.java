@@ -1,8 +1,8 @@
 package com.example.microblog.controller;
 
-import com.example.microblog.repository.RepoComment;
-import com.example.microblog.repository.RepoPost;
-import com.example.microblog.repository.RepoUser;
+import com.example.microblog.repository.CommentRepo;
+import com.example.microblog.repository.PostRepo;
+import com.example.microblog.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,13 +28,13 @@ import com.example.microblog.entities.User;
 public class PostController {
 
     @Autowired
-    RepoPost repoP;
+    UserRepo repoU;
 
     @Autowired
-    RepoComment repoC;
+    PostRepo repoP;
 
     @Autowired
-    RepoUser repoU;
+    CommentRepo repoC;
 
     @RequestMapping("Microblog/posts")
     /**

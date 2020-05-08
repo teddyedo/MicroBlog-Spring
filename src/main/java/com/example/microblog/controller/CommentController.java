@@ -9,9 +9,9 @@ import com.example.microblog.entities.Comment;
 import com.example.microblog.entities.Post;
 import com.example.microblog.entities.User;
 
-import com.example.microblog.repository.RepoComment;
-import com.example.microblog.repository.RepoPost;
-import com.example.microblog.repository.RepoUser;
+import com.example.microblog.repository.CommentRepo;
+import com.example.microblog.repository.PostRepo;
+import com.example.microblog.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,13 +28,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CommentController {
 
     @Autowired
-    RepoUser repoU;
+    UserRepo repoU;
 
     @Autowired
-    RepoPost repoP;
+    PostRepo repoP;
 
     @Autowired
-    RepoComment repoC;
+    CommentRepo repoC;
 
     /**
      * Return the page for creating comment

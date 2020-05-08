@@ -1,11 +1,10 @@
-package com.example.microblog.repository;
+package com.example.microblog.restRepository;
 
 import com.example.microblog.entities.Post;
 import com.example.microblog.entities.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +20,5 @@ public interface RepoPost extends PagingAndSortingRepository<Post, Long> {
 
     @ApiOperation("Find a post by a user id")
     List<Post> findPostsByUser_Id(@ApiParam(value = "The id of the user that wrote the post") Long id);
-
 
 }

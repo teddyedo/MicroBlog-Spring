@@ -2,7 +2,7 @@ package com.example.microblog.controller;
 
 import com.example.microblog.entities.User;
 
-import com.example.microblog.repository.RepoUser;
+import com.example.microblog.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     @Autowired
-    RepoUser repo;
-    
+    UserRepo repoU;
 
     @PostMapping(value="Microblog/registration")
     /**
@@ -36,7 +35,7 @@ public class UserController {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         u.setPassword(passwordEncoder.encode(plainPsw));
 
-        repo.save(u);
+        repoU.save(u);
         
         return  "redirect:/Microblog";
     }
