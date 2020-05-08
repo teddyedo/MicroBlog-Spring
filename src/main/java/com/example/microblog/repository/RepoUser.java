@@ -2,6 +2,8 @@ package com.example.microblog.repository;
 
 import com.example.microblog.entities.User;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -12,6 +14,7 @@ import java.util.Optional;
 
 public interface RepoUser extends CrudRepository<User, Long> {
 
-    Optional<User> findByUsername(String username);
+    @ApiOperation("Find a user by username")
+    Optional<User> findByUsername(@ApiParam(value = "The username of the user") String username);
 
 }
