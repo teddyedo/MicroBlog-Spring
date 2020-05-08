@@ -21,7 +21,13 @@ If you want to see the javaDoc, please check the ```javaDoc``` folder (the link 
 
 ## Quick Guide
 
-If you want to use the ```Microblog```, you can download the project and launch it with your IDE. 
+If you want to use the ```Microblog```, you can download the project and launch it with your IDE. It's also possible to 
+extract a jar file and launch it.
+
+After the application has started, visit ```http://localhost:8080``` on your favourite browser and should appear the main 
+page of the Microblog. (If you enable HTTPS inside the project, you have to visit ```https://localhost:8443```). 
+
+Here you can navigate inside the blog, deciding whether to log in or not. Without login permissions you can only see posts.
 
 You can choose if you want to create a new User (by default the user that you will create have only ```USER``` 
 permissions, so you could only see and comment posts, not create them), or log in with an existing user; below, are 
@@ -61,3 +67,17 @@ visit Swagger documentation. The ```logout``` is not implemented, cause JWT hand
 
 ### ORM Diagram
 ![ORM Diagram](https://raw.githubusercontent.com/teddyedo/MicroBlog-Spring/master/img/Microblog.png)
+
+### H2 Database
+This project implement 2 different databases: MySQL and H2. The default one is H2, which console is reachable at 
+```http://localhost:8080/h2``` and the password is **USER1**. Normally H2 is used only for tests, because it's an in memory
+database, but I implemented it in such a way that the data are permanently saved inside the ```data``` folder.
+
+Uncommenting some lines into the ```application.properties``` file we can enable MySQL as database. It is necessary that locally
+is present a database with the same specifics of the H2's one.
+
+### HTTPS
+If you want, exists the possibility to enable HTTPS for connections to the Microblog server with a self signed certificate
+(By default, HTTPS is disabled to avoid connection problems with the ```Microblog - Mobile ``` client).
+
+To enable HTTPS, it is only necessary to uncomment all the rows inside ```MicroblogApplication.java``` and rerun the project.

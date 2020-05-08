@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * CommentoController
+ * CommentController
  * This controller manage the requests sends by a local instance of Microblog related to comments
  */
 @Controller
-public class CommentoController {
+public class CommentController {
 
     @Autowired
     RepoUser repoU;

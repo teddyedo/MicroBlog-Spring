@@ -17,7 +17,6 @@ import java.util.List;
 
 public interface RepoComment extends PagingAndSortingRepository<Comment, Long> {
 
-
     @ApiOperation("Find a comment by a post")
     List<Comment> findByPost(@ApiParam(value = "The post that is linked to the comment") @RequestBody Post p);
 
