@@ -28,6 +28,24 @@ and open the template in the editor.
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg fixed-top shadow p-3 mb-5 rounded">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <button class="nav-link">Microblog</button>
+      </li>
+      <li class="nav-item active">
+        <button class="nav-link" onclick="location.href = '/Microblog'">Home</button>
+      </li>
+      <li class="nav-item active" sec:authorize="isAnonymous()">
+        <button class="nav-link" onclick="location.href = '/Microblog/login'">Login</button>
+      </li>
+      <li class="nav-item active" sec:authorize="isAuthenticated()">
+        <button class="nav-link" onclick="location.href = '/Microblog/logout'">Logout</button>
+      </li>
+    </ul>
+  </div>
+</nav>
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100 p-t-85 p-b-20">

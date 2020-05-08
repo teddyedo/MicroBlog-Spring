@@ -523,3 +523,18 @@ iframe {
   font-family: Poppins-Bold;
   font-size: 19px;
 }
+
+.navbar-nav > li > a,
+.navbar-nav > li > button{
+  height: 60px;
+  line-height: 30px;
+  font-size: 18px;
+}
+
+.navbar{
+  background-color:#eae7dc;
+  }
+
+.nav-link:hover{
+  color: #e85a4f;
+}

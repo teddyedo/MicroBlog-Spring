@@ -31,10 +31,26 @@ and open the template in the editor.
 
 <body>
 
-
-
-    <div class="limiter">
-        <div class="container-login100">
+<nav class="navbar navbar-expand-lg fixed-top shadow p-3 mb-5 rounded">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <button class="nav-link">Microblog</button>
+            </li>
+            <li class="nav-item active">
+                <button class="nav-link" onclick="location.href = '/Microblog'">Home</button>
+            </li>
+            <li class="nav-item active" sec:authorize="isAnonymous()">
+                <button class="nav-link" onclick="location.href = '/Microblog/login'">Login</button>
+            </li>
+            <li class="nav-item active" sec:authorize="isAuthenticated()">
+                <button class="nav-link" onclick="location.href = '/Microblog/logout'">Logout</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+   <div class="limiter">
+       <div class="container-login100">
             <div class="wrap-login100 p-t-85 p-b-20">
                 <p sec:authorize="isAnonymous()" class="login100-form-title p-b-30">
                 Benvenuto nella lista dei post
@@ -63,14 +79,13 @@ and open the template in the editor.
                 </form>
             </div>
         </div>
-
         <a id="firstComment"></a>
-        <div class="container-login100 row-cols-4">
+        <div class="container-login100 row-cols-4-md">
 
             <div th:each="post: ${listaPost}" class="wrap-login100 p-t-85 p-b-20 p-r-20 m-r-50 m-t-40">
                 <h1 class="titoloCard" th:text="${post.titolo}"></h1>
                 <br />
-                <p class="utentePost" th:text="${post.utente.Username}">
+                <p class="utentePost" th:text="${post.user.username}">
                 </p>
                 <p class="testoCard" th:text="${post.testo}">
                 </p>
@@ -86,7 +101,7 @@ and open the template in the editor.
 
                     <div class="commento" th:each="commento : ${commentoRepo.findByPost(post)}">
                         <p class="titoloCommento"
-                            th:text="${commento.utente.Username}">
+                            th:text="${commento.user.username}">
                         </p>
                         <p class="testoCommento" th:text="${commento.testo}">
                         </p>
