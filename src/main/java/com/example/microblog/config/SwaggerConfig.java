@@ -41,14 +41,7 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.regex("/api/.*"))
-                .build().apiInfo(apiEndPointsInfo())
-
-                ;        //
-//        select()
-//                .apis(RequestHandlerSelectors
-//                        .basePackage("com.example.microblog.repository"))
-//                .paths(PathSelectors.regex("/api/.*"))
-//                .build().apiInfo(apiEndPointsInfo())
+                .build().apiInfo(apiEndPointsInfo());
     }
 
     /**
