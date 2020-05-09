@@ -1,5 +1,5 @@
 com.example.microblog
-com.example.microblog.config
+com.example.microblog.swaggerConfig
 com.example.microblog.controller
 com.example.microblog.entities
 com.example.microblog.exception

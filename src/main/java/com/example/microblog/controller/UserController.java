@@ -29,7 +29,6 @@ public class UserController {
     public String registration(User u) {
 
         u.setRoles("USER");
-        u.setSalt("sefgegeag");
         String plainPsw = u.getPassword();
 
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

@@ -1,4 +1,4 @@
-package com.example.microblog.config;
+package com.example.microblog.swaggerConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +39,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/api/.*"))
+                .paths(PathSelectors.regex("/Microblog/api/.*"))
                 .build().apiInfo(apiEndPointsInfo());
     }
 

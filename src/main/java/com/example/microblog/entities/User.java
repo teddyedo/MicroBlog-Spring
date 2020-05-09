@@ -55,12 +55,6 @@ public class User extends RepresentationModel<User>{
     @Basic
     @Getter
     @Setter
-    private String salt;
-
-    @Column(nullable = false)
-    @Basic
-    @Getter
-    @Setter
     private String roles;
 
     public User() {
@@ -71,7 +65,6 @@ public class User extends RepresentationModel<User>{
         this.username = username;
         this.password = password;
         this.email = email;
-        this.salt = salt;
         this.roles = roles;
     }
 

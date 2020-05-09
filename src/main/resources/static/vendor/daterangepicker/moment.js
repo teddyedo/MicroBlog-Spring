@@ -354,7 +354,7 @@
         };
     }
 
-    // internal storage for locale config files
+    // internal storage for locale swaggerConfig files
     var locales = {};
     var globalLocale;
 
@@ -432,15 +432,15 @@
             config.abbr = name;
             if (locales[name] != null) {
                 deprecateSimple('defineLocaleOverride',
-                        'use moment.updateLocale(localeName, config) to change ' +
+                        'use moment.updateLocale(localeName, swaggerConfig) to change ' +
                         'an existing locale. moment.defineLocale(localeName, ' +
-                        'config) should only be used for creating a new locale');
+                        'swaggerConfig) should only be used for creating a new locale');
                 config = mergeConfigs(locales[name]._config, config);
             } else if (config.parentLocale != null) {
                 if (locales[config.parentLocale] != null) {
                     config = mergeConfigs(locales[config.parentLocale]._config, config);
                 } else {
-                    // treat as if there is no base config
+                    // treat as if there is no base swaggerConfig
                     deprecateSimple('parentLocaleUndefined',
                             'specified parentLocale is not defined yet');
                 }
@@ -471,7 +471,7 @@
             // backwards compat for now: also set the locale
             locale_locales__getSetGlobalLocale(name);
         } else {
-            // pass null for config to unupdate, useful for tests
+            // pass null for swaggerConfig to unupdate, useful for tests
             if (locales[name] != null) {
                 if (locales[name].parentLocale != null) {
                     locales[name] = locales[name].parentLocale;
@@ -1422,7 +1422,7 @@
 
             // TODO: We need to take the current isoWeekYear, but that depends on
             // how we interpret now (local, utc, fixed offset). So create
-            // a now version of current config (take local/utc/offset flags, and
+            // a now version of current swaggerConfig (take local/utc/offset flags, and
             // create now).
             weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(local__createLocal(), 1, 4).year);
             week = defaults(w.W, 1);
@@ -1491,7 +1491,7 @@
             token = tokens[i];
             parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0];
             // console.log('token', token, 'parsedInput', parsedInput,
-            //         'regex', getParseRegexForToken(token, config));
+            //         'regex', getParseRegexForToken(token, swaggerConfig));
             if (parsedInput) {
                 skipped = string.substr(0, string.indexOf(parsedInput));
                 if (skipped.length > 0) {
