@@ -174,7 +174,23 @@ iframe {
   background: #d8c3a5;  
 }
 
+.container-login110 {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
+  padding: 15px;
+  background: #d8c3a5;
+}
+
 .wrap-login100 {
+  vertical-align: top;
   width: 390px;
   background: #eae7dc;
   border-radius: 30px;
@@ -529,6 +545,7 @@ iframe {
   height: 60px;
   line-height: 30px;
   font-size: 18px;
+  font-family: Poppins-Regular;
 }
 
 .navbar{

@@ -11,6 +11,7 @@ and open the template in the editor.
     <title>Lista dei post</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" th:href="@{/icons/icon.png}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js}"></script>
@@ -35,7 +36,7 @@ and open the template in the editor.
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <button class="nav-link">Microblog</button>
+                <button class="nav-link" onclick="location.href = '/Microblog'">Microblog</button>
             </li>
             <li class="nav-item active">
                 <button class="nav-link" onclick="location.href = '/Microblog'">Home</button>
@@ -80,7 +81,7 @@ and open the template in the editor.
             </div>
         </div>
         <a id="firstComment"></a>
-        <div class="container-login100 row-cols-4-md">
+        <div class="container-login110 row-cols-4-md">
 
             <div th:each="post: ${listaPost}" class="wrap-login100 p-t-85 p-b-20 p-r-20 m-r-50 m-t-40">
                 <h1 class="titoloCard" th:text="${post.titolo}"></h1>
