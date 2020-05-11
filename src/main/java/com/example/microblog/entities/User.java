@@ -57,10 +57,9 @@ public class User extends RepresentationModel<User>{
     @Setter
     private String roles;
 
-    public User() {
-    }
+    public User() {}
 
-    public User(long id, String username, String password, String email, String salt, String roles) {
+    public User(long id, String username, String password, String email, String roles) {
         this.id = id;
         this.username = username;
         this.password = password;

@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.hateoas.RepresentationModel;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -40,11 +42,13 @@ public class Comment extends RepresentationModel<Comment> {
     @Getter
     @Setter
     @ManyToOne(targetEntity = User.class)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     @Getter
     @Setter
     @ManyToOne(targetEntity = Post.class)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Post post;
 
     public Comment() {
