@@ -12,6 +12,8 @@ Too see the API's documentation with Swagger, download and launch the repo and v
 
 ```http://localhost:8080/swagger-ui.html```
 
+Inside the Swagger Documentation is missing the path to get the JWT; the path to get the token is ```http://localhost:8080/Microblog/api/login```
+
 ### Client
 Visit the repository for my mobile client for this project made with flutter!
 [Mobile client](https://github.com/teddyedo/Microblog-mobile).
@@ -63,7 +65,9 @@ This application implements two security level:
 - **JWT authentication**, used to handle security and permissions with some restAPI, used by 
 [my Flutter Application](https://github.com/teddyedo/Microblog-mobile).
 To request JWT auth, the path is ```/Microblog/api/login```. For more information about the format of the restAPI, 
-visit Swagger documentation. The ```logout``` is not implemented, cause JWT handle **STATELESS** connections.
+visit Swagger documentation. The ```logout``` is not implemented, cause JWT handle **STATELESS** connections. To perform JWT login, you have to specifiy inside the body of the request the **username** and the **password** of an existing user. If you have inserted rights credential, you will receive a response that contain the JWT inside the header, under **Authotization**.
+
+The JWT would be like ```Bearer JWT```; To use it, you have to insert the entire token, also with the ```Bearer ``` index, in every request you send.
 
 ### ORM Diagram
 ![ORM Diagram](https://raw.githubusercontent.com/teddyedo/MicroBlog-Spring/master/img/Microblog.png)
