@@ -555,3 +555,7 @@ iframe {
 .nav-link:hover{
   color: #e85a4f;
 }
+
+.error{
+  color: #e85a4f;
+}

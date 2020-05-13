@@ -46,7 +46,8 @@ and open the template in the editor.
                 </div>
                 <button type="submit" class="login100-form-btn" id="button3">Login</button>
                 <label></label>
-                <p class="m-t-20 text-center" id="ErrorParagraph">
+                <p th:if="${loginError}" class="m-t-20 text-center error" id="ErrorParagraph">
+                    Login error: bad username or password
                 </p>
             </form>
 
