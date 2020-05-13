@@ -10,7 +10,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.Optional;
 
 @Api(tags = "User Entity")
-@RepositoryRestResource(collectionResourceRel="users", path="users")
+@RepositoryRestResource(collectionResourceRel="users", path="users", exported = true)
 
 public interface RepoUser extends CrudRepository<User, Long> {
 
