@@ -76,3 +76,4 @@ public class CommentController {
         return "redirect:/Microblog/posts";
     }
 }
+

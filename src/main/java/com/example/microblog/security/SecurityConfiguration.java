@@ -76,14 +76,17 @@ public class SecurityConfiguration {
                     .antMatchers(HttpMethod.GET, "/Microblog/api/users").hasRole("ADMIN")
                     .antMatchers(HttpMethod.PUT, "/Microblog/api/users").hasRole("ADMIN")
                     .antMatchers(HttpMethod.DELETE, "/Microblog/api/users").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.DELETE, "/Microblog/api/users/*").hasRole("ADMIN")
                     .antMatchers("/Microblog/api/users").permitAll()
                     .antMatchers(HttpMethod.POST, "/Microblog/api/posts").hasRole("ADMIN")
                     .antMatchers(HttpMethod.PUT, "/Microblog/api/posts").hasRole("ADMIN")
                     .antMatchers(HttpMethod.DELETE, "/Microblog/api/posts").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.DELETE, "/Microblog/api/posts/*").hasRole("ADMIN")
                     .antMatchers("/Microblog/api/posts").permitAll()
                     .antMatchers(HttpMethod.POST, "/Microblog/api/comments").authenticated()
                     .antMatchers(HttpMethod.PUT, "/Microblog/api/comments").authenticated()
                     .antMatchers(HttpMethod.DELETE, "/Microblog/api/comments").authenticated()
+                    .antMatchers(HttpMethod.DELETE, "/Microblog/api/comments/*").authenticated()
                     .antMatchers("/Microblog/api/comments").permitAll()
                     .antMatchers("/login").permitAll();
         }
