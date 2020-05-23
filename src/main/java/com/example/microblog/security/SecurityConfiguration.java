@@ -19,7 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
- * SecurityConfiguration
+ * @author Allari Edoardo
+ * Security Configuration for JWT and login form
  */
 
 @Configuration
