@@ -18,6 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * @author Allari Edoardo
+ */
+
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
     private RepoUser userRepository;

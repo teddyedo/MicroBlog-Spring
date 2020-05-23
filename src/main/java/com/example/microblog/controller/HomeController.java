@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
+ * @author Allari Edoardo
  * HomeController
  * This controller manage the requests sends by a local instance of Microblog related to the homepage
  */
@@ -13,19 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    @RequestMapping("/")
     /**
      * Redirect to homePage
      * @return HTML page - homepage
      */
+    @RequestMapping("/")
     public String redirectHomePage(){
         return "redirect:/Microblog";
     }
 
-    @RequestMapping("Microblog")
     /**
      * Homepage
      */
+    @RequestMapping("Microblog")
     public String getHomePage(){
         return "index.html";
     }

@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * @author Allari Edoardo
+ *
+ */
+
 @Service
 public class UserPrincipalDetailService implements UserDetailsService {
 
@@ -21,8 +26,7 @@ public class UserPrincipalDetailService implements UserDetailsService {
 
         Optional<User> op = userRepository.findByUsername(username);
         User u = op.get();
-        UserPrincipal userPrincipal = new UserPrincipal(u);
 
-        return userPrincipal;
+        return new UserPrincipal(u);
     }
 }

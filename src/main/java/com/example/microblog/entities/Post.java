@@ -14,8 +14,11 @@ import springfox.documentation.annotations.ApiIgnore;
  * 
  * @author Allari Edoardo
  * @version 1.0.0 - 14/03/2020
+ *
+ * Post Entity
  * 
  */
+
 @ApiIgnore
 @Entity
 public class Post extends RepresentationModel<Post> {
@@ -56,5 +59,4 @@ public class Post extends RepresentationModel<Post> {
         this.testo = testo;
         this.titolo = titolo;
     }
-
 }

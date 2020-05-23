@@ -9,9 +9,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @author Allari Edoardo
+ */
+
 public class UserPrincipal implements UserDetails {
 
-    private User utente;
+    private final User utente;
 
     public UserPrincipal(User utente) {
         this.utente = utente;

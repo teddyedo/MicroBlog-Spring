@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
+/**
+ * @author Allari Edoardo
+ * Rest repository for posts
+ */
+
 @Api(tags = "Post Entity")
 @RepositoryRestResource(collectionResourceRel="posts", path="posts", exported = true)
 public interface RepoPost extends PagingAndSortingRepository<Post, Long> {

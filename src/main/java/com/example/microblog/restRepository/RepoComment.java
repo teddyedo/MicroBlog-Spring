@@ -8,12 +8,16 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+
+/**
+ * @author Allari Edoardo
+ * Rest Repository for comments
+ */
 
 @Api(tags = "Comment Entity")
 @RepositoryRestResource(collectionResourceRel="comments", path="comments", exported = true)

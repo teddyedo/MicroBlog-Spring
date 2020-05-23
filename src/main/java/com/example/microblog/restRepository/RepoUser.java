@@ -9,6 +9,12 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Optional;
 
+
+/**
+ * @author Allari Edoardo
+ * Rest Repository for Users
+ */
+
 @Api(tags = "User Entity")
 @RepositoryRestResource(collectionResourceRel="users", path="users", exported = true)
 

@@ -3,9 +3,6 @@ package com.example.microblog.entities;
 
 import javax.persistence.*;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
@@ -20,6 +17,8 @@ import java.util.List;
  * 
  * @author Allari Edoardo
  * @version 1.0.0 - 14/03/2020
+ *
+ * User Entity
  * 
  */
 
@@ -73,6 +72,4 @@ public class User extends RepresentationModel<User>{
         }
         return new ArrayList<>();
     }
-
-
 }

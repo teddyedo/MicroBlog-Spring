@@ -15,7 +15,8 @@ import springfox.documentation.annotations.ApiIgnore;
  * 
  * @author Allari Edoardo
  * @version 1.0.0 - 14/03/2020
- * 
+ *
+ * Comment Entity
  */
 
 @Entity
@@ -61,7 +62,4 @@ public class Comment extends RepresentationModel<Comment> {
         this.user = utente;
         this.post = post;
     }
-
-	
-
 }

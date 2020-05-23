@@ -23,7 +23,8 @@ import java.util.List;
 
 
 /**
- * SwaggerConfig
+ * @author Allari Edoardo
+ * Swagger Configuration
  */
 
  @Configuration
@@ -31,10 +32,10 @@ import java.util.List;
  @Import(SpringDataRestConfiguration.class)
 public class SwaggerConfig {
 
-    @Bean
     /**
      * Determine where are my APIs
      */
+    @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
@@ -50,7 +51,7 @@ public class SwaggerConfig {
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("Microblog REST API")
             .description("Microblog Management REST API")
-            .contact(new Contact("Allari Edoardo", "www.exampleSite.net", "contactme@gmail.com"))
+            .contact(new Contact("Allari Edoardo", "https://github.com/teddyedo/MicroBlog-Spring", "edo.allari@gmail.com"))
             .license("Apache 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
             .version("1.0.0")

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 /**
+ * @author Allari Edoardo
  * UserController
  * This controller manage the requests sends by a local instance of Microblog related to users
  */
@@ -28,11 +29,12 @@ public class UserController {
 
     @Autowired
     RepoComment repoC;
-    @PostMapping(value="Microblog/registration")
+
     /**
      * Register a new User
      * @return HTML page - homepage
      */
+    @PostMapping(value="Microblog/registration")
     public String registration(User u) {
 
         u.setRoles("USER");
@@ -45,7 +47,5 @@ public class UserController {
         
         return  "redirect:/Microblog";
     }
-
-
 }
 

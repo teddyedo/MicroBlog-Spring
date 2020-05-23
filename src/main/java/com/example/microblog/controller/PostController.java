@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Date;
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
-
 import com.example.microblog.entities.Post;
 import com.example.microblog.entities.User;
 
 
 /**
+ * @author Allari Edoardo
  * PostController
  * This controller manage the requests sends by a local instance of Microblog related to posts
  */
@@ -36,11 +35,11 @@ public class PostController {
     @Autowired
     RepoComment repoC;
 
-    @RequestMapping("Microblog/posts")
     /**
      * Generate and view the postList
      * @return HTML page - postlist page
      */
+    @RequestMapping("Microblog/posts")
     public String getListaPost(Model model) {
 
         model.addAttribute("listaPost", repoP.findAll());
@@ -49,24 +48,23 @@ public class PostController {
         return "postList.html";
     }
 
-    @RequestMapping("Microblog/posts/creapost")
     /**
      * get the page to create a post
      * @return HTML page - creaPost page
      */
+    @RequestMapping("Microblog/posts/creapost")
     public String getPostForm(){
         return "creaPost.html";
     }
 
     
-    @RequestMapping("Microblog/posts/newpost")
     /**
      * Create a new post
      * @param p: post JSON formatted
-     * @param session: the session of the user
      * @return HTML page - postList page
      */
-    public String publicPost(Post p, HttpSession session) {
+    @RequestMapping("Microblog/posts/newpost")
+    public String publicPost(Post p) {
         
         Date dataOra = new Date();
         p.setDataOra(dataOra);
@@ -74,9 +72,7 @@ public class PostController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalUsername = authentication.getName();
 
-
         Optional<User> op = repoU.findByUsername(currentPrincipalUsername);
-
 
         User u = op.get();
         p.setUser(u);

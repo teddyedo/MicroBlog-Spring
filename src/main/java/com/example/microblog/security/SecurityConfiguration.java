@@ -3,7 +3,6 @@ package com.example.microblog.security;
 import com.example.microblog.jwt.JwtAuthenticationFilter;
 import com.example.microblog.jwt.JwtAuthorizationFilter;
 import com.example.microblog.restRepository.RepoUser;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

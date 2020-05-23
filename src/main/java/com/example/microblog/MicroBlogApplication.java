@@ -25,6 +25,7 @@ public class MicroBlogApplication {
         SpringApplication.run(MicroBlogApplication.class, args);
     }
 
+
 // HTTPS CONFIGURATION - DISABLED TO ALLOW WORKING WITH CLIENT
 //    @Bean
 //    public ServletWebServerFactory servletContainer() {

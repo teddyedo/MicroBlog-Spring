@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
+ * @author Allari Edoardo
  * CommentController
  * This controller manage the requests sends by a local instance of Microblog related to comments
  */
@@ -50,11 +51,10 @@ public class CommentController {
     /**
      * Create a new comment
      * @param c the comment, JSON formatted
-     * @param session the session from where take the postID
      * @return HTML page - postList
      */
     @RequestMapping("Microblog/comments/newcomment/{postId}")
-    public String publicCommento(@PathVariable(value = "postId") long id, Comment c, HttpSession session) {
+    public String publicCommento(@PathVariable(value = "postId") long id, Comment c) {
 
         Date dataOra = new Date();
 
